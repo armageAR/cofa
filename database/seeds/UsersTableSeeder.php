@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
         // Module
         $moduleId = DB::table('modules')->insertGetId([
             'name' => 'users',
-            'display_name' => 'Users',
+            'display_name' => 'Usuarios',
             'icon' => 'icon-people'
         ]);
 
@@ -24,25 +24,25 @@ class UsersTableSeeder extends Seeder
         DB::table('permissions')->insert([
             [
                 'name' => 'read-users',
-                'display_name' => 'Read',
+                'display_name' => 'Leer',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ],
             [
                 'name' => 'create-users',
-                'display_name' => 'Create',
+                'display_name' => 'Crear',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ],
             [
                 'name' => 'update-users',
-                'display_name' => 'Update',
+                'display_name' => 'Actualizar',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ],
             [
                 'name' => 'delete-users',
-                'display_name' => 'Delete',
+                'display_name' => 'Borrar',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ]
@@ -55,7 +55,7 @@ class UsersTableSeeder extends Seeder
         // Create default user
         $user = \App\User::create([
             'name' => 'admin',
-            'email' => 'admin@modulr.io',
+            'email' => 'admin@example.com',
             'password' => bcrypt('admin'),
             'avatar' => 'avatar.png'
         ]);
@@ -63,6 +63,6 @@ class UsersTableSeeder extends Seeder
         $user->assignRole('admin');
         // Generate avatar to defautl user
         $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
-        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
+        Storage::put('avatars/' . $user->id . '/avatar.png', (string)$avatar);
     }
 }

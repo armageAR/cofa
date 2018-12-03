@@ -16,7 +16,7 @@ class ProfileTableSeeder extends Seeder
         // Module
         $moduleId = DB::table('modules')->insertGetId([
             'name' => 'profile',
-            'display_name' => 'Profile',
+            'display_name' => 'Perfiles',
             'icon' => 'icon-user',
             'active' => false
         ]);
@@ -25,25 +25,25 @@ class ProfileTableSeeder extends Seeder
         DB::table('permissions')->insert([
             [
                 'name' => 'read-profile',
-                'display_name' => 'Read Profile',
+                'display_name' => 'Leer Perfil',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ],
             [
                 'name' => 'update-profile',
-                'display_name' => 'Update Profile',
+                'display_name' => 'Actualizar Perfil',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ],
             [
                 'name' => 'read-profile-password',
-                'display_name' => 'Read Password',
+                'display_name' => 'Leer Clave',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ],
             [
                 'name' => 'update-profile-password',
-                'display_name' => 'Update Password',
+                'display_name' => 'Actualizar Clave',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ]

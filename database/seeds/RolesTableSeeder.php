@@ -24,25 +24,25 @@ class RolesTableSeeder extends Seeder
         DB::table('permissions')->insert([
             [
                 'name' => 'read-roles',
-                'display_name' => 'Read',
+                'display_name' => 'Leer',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ],
             [
                 'name' => 'create-roles',
-                'display_name' => 'Create',
+                'display_name' => 'Crear',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ],
             [
                 'name' => 'update-roles',
-                'display_name' => 'Update',
+                'display_name' => 'Actualizar',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ],
             [
                 'name' => 'delete-roles',
-                'display_name' => 'Delete',
+                'display_name' => 'Borrar',
                 'guard_name' => 'web',
                 'module_id' => $moduleId
             ]
@@ -55,7 +55,7 @@ class RolesTableSeeder extends Seeder
         ]);
         $user = Role::create([
             'name' => 'user',
-            'display_name' => 'User'
+            'display_name' => 'Usuario'
         ]);
 
         // Assign permissions to admin role
