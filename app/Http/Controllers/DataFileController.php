@@ -14,7 +14,25 @@ class DataFileController extends Controller
      */
     public function index()
     {
-        Storage::disk('movistar')->put('file.txt', 'Contents---');
+        $files = Storage::disk('movistar')->listContents('/', false);
+        foreach ($files as $file) {
+            $stream = Storage::disk('movistar')->readStream($file["basename"]);
+            while (!feof($stream)) {
+                $cols = explode("\t", fgets($stream));
+                if (count($cols) <= 2) {
+                    foreach ($cols as $col) {
+                        echo $col . '<br>';
+                    }
+                }
+
+            }
+
+            fclose($stream);
+            // $contents = stream_get_contents($stream);
+            // echo $contents;
+        }
+
+        //return ($files);
     }
 
     /**
