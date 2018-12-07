@@ -60310,7 +60310,7 @@ var render = function() {
       _c(
         "small",
         { staticClass: "text-muted text-uppercase font-weight-bold" },
-        [_vm._v("Users registered")]
+        [_vm._v("Usuarios Registrados")]
       )
     ])
   ])
@@ -60438,7 +60438,7 @@ var render = function() {
       _c(
         "small",
         { staticClass: "text-muted text-uppercase font-weight-bold" },
-        [_vm._v("Roles created")]
+        [_vm._v("Roles creados")]
       )
     ])
   ])

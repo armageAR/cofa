@@ -26,7 +26,7 @@
             @can('read-suppliers')
             <li class="nav-item">
                 <a class="nav-link" href="/suppliers">
-                    <i class="nav-icon icon-key"></i> Proveedores
+                    <i class="nav-icon icon-notebook"></i> Proveedores
                 </a>
             </li>
             @endcan

@@ -5,28 +5,27 @@
         <i class="icon-people"></i>
       </div>
       <div class="text-value">{{users}}</div>
-      <small class="text-muted text-uppercase font-weight-bold">Users registered</small>
+      <small class="text-muted text-uppercase font-weight-bold">Usuarios Registrados</small>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       users: 0
-    }
+    };
   },
-  mounted () {
-    this.getUsersCount()
+  mounted() {
+    this.getUsersCount();
   },
   methods: {
-    getUsersCount () {
-      axios.get(`/api/users/count`)
-      .then(response => {
-        this.users = response.data
-      })
-    },
+    getUsersCount() {
+      axios.get(`/api/users/count`).then(response => {
+        this.users = response.data;
+      });
+    }
   }
-}
+};
 </script>
