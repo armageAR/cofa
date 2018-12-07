@@ -38,19 +38,19 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'taxNumber' => 'required|integer|unique:users',
+            'taxNumber' => 'required|integer|unique:suppliers',
             'bussinesName' => 'required|string',
             'name' => 'required|string'
         ]);
 
-        $user = User::create([
+        $supplier = Supplier::create([
             'taxNumber' => $request->taxNumber,
             'name' => $request->name,
             'bussinesName' => $request->bussinesName,
             'abbreviation' => $request->abbreviation,
         ]);
 
-        return $user;
+        return $supplier;
     }
 
     /**

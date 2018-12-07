@@ -50,6 +50,7 @@ Vue.component("users-edit", require("./components/users/Edit.vue"));
 
 // Suppliers
 Vue.component("suppliers-index", require("./components/suppliers/Index.vue"));
+Vue.component("suppliers-create", require("./components/suppliers/Create.vue"));
 
 // Roles
 Vue.component("roles-index", require("./components/roles/Index.vue"));
