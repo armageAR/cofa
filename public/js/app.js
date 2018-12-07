@@ -63122,7 +63122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      users: [],
+      suppliers: [],
       filters: {
         pagination: {
           from: 0,
@@ -63155,19 +63155,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.loading = true;
-      this.users = [];
+      this.suppliers = [];
 
       localStorage.setItem("filtersTableSuppliers", JSON.stringify(this.filters));
 
       axios.post("/api/suppliers/filter?page=" + this.filters.pagination.current_page, this.filters).then(function (response) {
-        _this.users = response.data.data;
+        _this.suppliers = response.data.data;
         delete response.data.data;
         _this.filters.pagination = response.data;
         _this.loading = false;
       });
     },
-    editUser: function editUser(userId) {
-      location.href = "/users/" + userId + "/edit";
+    editSupplier: function editSupplier(supplierId) {
+      location.href = "/suppliers/" + supplierId + "/edit";
     },
 
     // filters
@@ -63334,7 +63334,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("User")]
+                  [_vm._v("Nombre")]
                 ),
                 _vm._v(" "),
                 _c("i", {
@@ -63350,7 +63350,7 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("th", [_vm._v("Roles")]),
+              _c("th", [_vm._v("Razon Social")]),
               _vm._v(" "),
               _c("th", { staticClass: "d-none d-sm-table-cell" }, [
                 _c(
@@ -63387,33 +63387,37 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.users, function(user) {
+            _vm._l(_vm.suppliers, function(supplier) {
               return _c(
                 "tr",
                 {
-                  key: user.id,
+                  key: supplier.id,
                   on: {
                     click: function($event) {
-                      _vm.editUser(user.id)
+                      _vm.editSupplier(supplier.id)
                     }
                   }
                 },
                 [
                   _c("td", { staticClass: "d-none d-sm-table-cell" }, [
-                    _vm._v(_vm._s(user.id))
+                    _vm._v(_vm._s(supplier.id))
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.name))]),
+                  _c("td", [_vm._v(_vm._s(supplier.name))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(" ")]),
+                  _c("td", [_vm._v(_vm._s(supplier.bussinesName))]),
                   _vm._v(" "),
                   _c("td", { staticClass: "d-none d-sm-table-cell" }, [
                     _c("small", [
-                      _vm._v(_vm._s(_vm._f("moment")(user.created_at, "LL")))
+                      _vm._v(
+                        _vm._s(_vm._f("moment")(supplier.created_at, "LL"))
+                      )
                     ]),
                     _vm._v(" -\n            "),
                     _c("small", { staticClass: "text-muted" }, [
-                      _vm._v(_vm._s(_vm._f("moment")(user.created_at, "LT")))
+                      _vm._v(
+                        _vm._s(_vm._f("moment")(supplier.created_at, "LT"))
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -63546,7 +63550,7 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        !_vm.loading && !_vm.users.length > 0
+        !_vm.loading && !_vm.suppliers.length > 0
           ? _c("div", { staticClass: "no-items-found text-center mt-5" }, [
               _c("i", { staticClass: "icon-magnifier fa-3x text-muted" }),
               _vm._v(" "),

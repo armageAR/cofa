@@ -47,13 +47,13 @@
               ></i>
             </th>
             <th>
-              <a href="#" class="text-dark" @click.prevent="sort('name')">User</a>
+              <a href="#" class="text-dark" @click.prevent="sort('name')">Nombre</a>
               <i
                 class="mr-1 fas"
                 :class="{'fa-long-arrow-alt-down': filters.orderBy.column == 'name' && filters.orderBy.direction == 'asc', 'fa-long-arrow-alt-up': filters.orderBy.column == 'name' && filters.orderBy.direction == 'desc'}"
               ></i>
             </th>
-            <th>Roles</th>
+            <th>Razon Social</th>
             <th class="d-none d-sm-table-cell">
               <a href="#" class="text-dark" @click.prevent="sort('created_at')">Registered</a>
               <i
@@ -65,13 +65,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in users" @click="editUser(user.id)" :key="user.id">
-            <td class="d-none d-sm-table-cell">{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td>&nbsp;</td>
+          <tr v-for="supplier in suppliers" @click="editSupplier(supplier.id)" :key="supplier.id">
+            <td class="d-none d-sm-table-cell">{{supplier.id}}</td>
+            <td>{{supplier.name}}</td>
+            <td>{{supplier.bussinesName}}</td>
             <td class="d-none d-sm-table-cell">
-              <small>{{user.created_at | moment("LL")}}</small> -
-              <small class="text-muted">{{user.created_at | moment("LT")}}</small>
+              <small>{{supplier.created_at | moment("LL")}}</small> -
+              <small class="text-muted">{{supplier.created_at | moment("LT")}}</small>
             </td>
             <td class="d-none d-sm-table-cell">
               <a href="#" class="text-muted">
@@ -122,7 +122,7 @@
           </nav>
         </div>
       </div>
-      <div class="no-items-found text-center mt-5" v-if="!loading && !users.length > 0">
+      <div class="no-items-found text-center mt-5" v-if="!loading && !suppliers.length > 0">
         <i class="icon-magnifier fa-3x text-muted"></i>
         <p class="mb-0 mt-3">
           <strong>Could not find any items</strong>
@@ -143,7 +143,7 @@
 export default {
   data() {
     return {
-      users: [],
+      suppliers: [],
       filters: {
         pagination: {
           from: 0,
@@ -173,7 +173,7 @@ export default {
   methods: {
     getSuppliers() {
       this.loading = true;
-      this.users = [];
+      this.suppliers = [];
 
       localStorage.setItem(
         "filtersTableSuppliers",
@@ -186,14 +186,14 @@ export default {
           this.filters
         )
         .then(response => {
-          this.users = response.data.data;
+          this.suppliers = response.data.data;
           delete response.data.data;
           this.filters.pagination = response.data;
           this.loading = false;
         });
     },
-    editUser(userId) {
-      location.href = `/users/${userId}/edit`;
+    editSupplier(supplierId) {
+      location.href = `/suppliers/${supplierId}/edit`;
     },
     // filters
     filter() {
