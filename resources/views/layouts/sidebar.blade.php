@@ -7,12 +7,12 @@
                 </a>
             </li>
             @can('read-users','read-roles')
-            <li class="nav-title">Settings</li>
+            <li class="nav-title">Configuración</li>
             @endcan
             @can('read-users')
             <li class="nav-item">
                 <a class="nav-link" href="/users">
-                    <i class="nav-icon icon-people"></i> Users
+                    <i class="nav-icon icon-people"></i> Usuarios
                 </a>
             </li>
             @endcan
@@ -20,6 +20,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="/roles">
                     <i class="nav-icon icon-key"></i> Roles
+                </a>
+            </li>
+            @endcan
+            @can('read-suppliers')
+            <li class="nav-item">
+                <a class="nav-link" href="/suppliers">
+                    <i class="nav-icon icon-key"></i> Proveedores
                 </a>
             </li>
             @endcan
