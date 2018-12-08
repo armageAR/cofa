@@ -107,7 +107,7 @@ class SupplierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Supplier  $supplier
+     * @param    $supplier
      * @return \Illuminate\Http\Response
      */
     public function destroy($supplier)
@@ -118,7 +118,8 @@ class SupplierController extends Controller
 
     public function filter(Request $request)
     {
-        $query = Supplier::query();
+        $query = Supplier::query()->withCount('contacts', 'addresses');
+
 
         if ($request->search) {
             $query->where('name', 'LIKE', '%' . $request->search . '%');
@@ -128,8 +129,11 @@ class SupplierController extends Controller
             ->paginate($request->input('pagination.per_page'));
 
 
+        //$suppliers = Supplier::orderBy($request->input('orderBy.column'), $request->input('orderBy.direction'));
 
-        return $suppliers;
+
+
+        return json_encode($suppliers);
     }
 
     public function count()

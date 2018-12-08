@@ -63121,6 +63121,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -63357,6 +63361,10 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v("CUIT")]),
               _vm._v(" "),
+              _c("th", [_vm._v("Contactos")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Direcciones")]),
+              _vm._v(" "),
               _c("th", { staticClass: "d-none d-sm-table-cell" }, [
                 _c(
                   "a",
@@ -63413,6 +63421,10 @@ var render = function() {
                   _c("td", [_vm._v(_vm._s(supplier.bussinesName))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(supplier.taxNumber))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(supplier.contacts_count))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(supplier.addresses_count))]),
                   _vm._v(" "),
                   _c("td", { staticClass: "d-none d-sm-table-cell" }, [
                     _c("small", [
