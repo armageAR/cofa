@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Suppliers;
 use App\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\SupplierRequest;
 
 class SupplierController extends Controller
 {
@@ -35,19 +35,16 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SupplierRequest $request)
     {
-        $this->validate($request, [
-            'taxNumber' => 'required|integer|unique:suppliers',
-            'bussinesName' => 'required|string',
-            'name' => 'required|string'
-        ]);
+
+        $validated = $request->validated();
 
         $supplier = Supplier::create([
-            'taxNumber' => $request->taxNumber,
-            'name' => $request->name,
-            'bussinesName' => $request->bussinesName,
-            'abbreviation' => $request->abbreviation,
+            'taxNumber' => $validated->taxNumber,
+            'name' => $validated->name,
+            'bussinesName' => $validated->bussinesName,
+            'abbreviation' => $validated->abbreviation,
         ]);
 
         return $supplier;

@@ -64122,6 +64122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -64135,6 +64136,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   mounted: function mounted() {
     this.getSupplier();
+    console.log("success");
   },
 
   methods: {
@@ -64375,7 +64377,7 @@ var render = function() {
                       ],
                       staticClass: "form-control",
                       class: { "is-invalid": _vm.errors.bussinesName },
-                      attrs: { type: "text" },
+                      attrs: { type: "text", name: "Razon Social" },
                       domProps: { value: _vm.supplier.bussinesName },
                       on: {
                         input: function($event) {

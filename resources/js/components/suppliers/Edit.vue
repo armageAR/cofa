@@ -102,6 +102,7 @@ export default {
   },
   mounted() {
     this.getSupplier();
+    console.log("success");
   },
   methods: {
     getSupplier() {
