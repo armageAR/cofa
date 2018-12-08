@@ -85,12 +85,13 @@ class SupplierController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'taxNumber' => 'required|integer|unique:users',
+            'taxNumber' => 'required|integer', //|unique:suppliers
             'bussinesName' => 'required|string',
             'name' => 'required|string'
         ]);
 
         $supplier = Supplier::find($request->id);
+
 
         if ($supplier->taxNumber != $request->taxNumber) {
             $supplier->taxNumber = $request->taxNumber;
@@ -116,7 +117,7 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy($supplier)
     {
         return Supplier::destroy($supplier);
     }
@@ -142,4 +143,13 @@ class SupplierController extends Controller
     {
         return Supplier::count();
     }
+
+    public function getSupplier($supplier)
+    {
+        $supplier = Supplier::findOrFail($supplier);
+
+        return $supplier;
+    }
+
+
 }

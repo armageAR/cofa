@@ -10,14 +10,14 @@ Route::middleware('auth')->group(function () {
 
         // api
         Route::group(['prefix' => 'api/suppliers'], function () {
-            Route::get('/getSupplierRoles/{supplier}', 'SupplierController@getSupplierRoles');
+            Route::get('/getSupplier/{supplier}', 'SupplierController@getSupplier');
             Route::get('/count', 'SupplierController@count');
             Route::post('/filter', 'SupplierController@filter')->middleware('permission:read-suppliers');
 
             Route::get('/{supplier}', 'SupplierController@show')->middleware('permission:read-suppliers');
             Route::post('/store', 'SupplierController@store')->middleware('permission:create-suppliers');
             Route::put('/update/{supplier}', 'SupplierController@update')->middleware('permission:update-suppliers');
-            Route::delete('/{supplier}', 'SupplierController@destroy')->middleware('permission:delete-suppliers');
+            Route::delete('/{supplier}', 'SupplierController@destroy'); //->middleware('permission:delete-suppliers');
         });
     });
 });
