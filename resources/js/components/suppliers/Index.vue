@@ -54,6 +54,7 @@
               ></i>
             </th>
             <th>Razon Social</th>
+            <th>CUIT</th>
             <th class="d-none d-sm-table-cell">
               <a href="#" class="text-dark" @click.prevent="sort('created_at')">Registered</a>
               <i
@@ -69,6 +70,7 @@
             <td class="d-none d-sm-table-cell">{{supplier.id}}</td>
             <td>{{supplier.name}}</td>
             <td>{{supplier.bussinesName}}</td>
+            <td>{{supplier.taxNumber}}</td>
             <td class="d-none d-sm-table-cell">
               <small>{{supplier.created_at | moment("LL")}}</small> -
               <small class="text-muted">{{supplier.created_at | moment("LT")}}</small>

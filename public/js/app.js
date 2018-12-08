@@ -63119,6 +63119,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -63353,6 +63355,8 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v("Razon Social")]),
               _vm._v(" "),
+              _c("th", [_vm._v("CUIT")]),
+              _vm._v(" "),
               _c("th", { staticClass: "d-none d-sm-table-cell" }, [
                 _c(
                   "a",
@@ -63407,6 +63411,8 @@ var render = function() {
                   _c("td", [_vm._v(_vm._s(supplier.name))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(supplier.bussinesName))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(supplier.taxNumber))]),
                   _vm._v(" "),
                   _c("td", { staticClass: "d-none d-sm-table-cell" }, [
                     _c("small", [
@@ -63783,6 +63789,174 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -63822,7 +63996,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-md-center" }, [
-      _c("div", { staticClass: "col-md-9 col-xl-7" }, [
+      _c("div", { staticClass: "col-10" }, [
         _c(
           "div",
           { staticClass: "card-header px-0 mt-2 bg-transparent clearfix" },
@@ -63924,7 +64098,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Nombre")]),
+            _c("label", [_vm._v("Nombre Comercial")]),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -63990,37 +64164,331 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("fieldset", { staticClass: "form-group fieldset1" }, [
-            _c("legend", { staticClass: "legend1" }, [_vm._v("Contacto")]),
+            _c("legend", { staticClass: "legend1" }, [_vm._v("Dirección")]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Nombre")]),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-8" }, [
+                  _c("label", [_vm._v("Calle")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.supplier.street,
+                        expression: "supplier.street"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: { "is-invalid": _vm.errors.street },
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.supplier.street },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.supplier, "street", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.street
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.street[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-2" }, [
+                  _c("label", [_vm._v("Número")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.supplier.number,
+                        expression: "supplier.number"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: { "is-invalid": _vm.errors.number },
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.supplier.number },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.supplier, "number", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.number
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.number[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-2" }, [
+                  _c("label", [_vm._v("Depto")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.supplier.department,
+                        expression: "supplier.department"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: { "is-invalid": _vm.errors.department },
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.supplier.department },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.supplier,
+                          "department",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.department
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.department[0]))
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Provincia")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.supplier.first_name,
-                    expression: "supplier.first_name"
+                    value: _vm.supplier.state,
+                    expression: "supplier.state"
                   }
                 ],
                 staticClass: "form-control",
-                class: { "is-invalid": _vm.errors.first_name },
+                class: { "is-invalid": _vm.errors.state },
                 attrs: { type: "text" },
-                domProps: { value: _vm.supplier.first_name },
+                domProps: { value: _vm.supplier.state },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.supplier, "first_name", $event.target.value)
+                    _vm.$set(_vm.supplier, "state", $event.target.value)
                   }
                 }
               }),
               _vm._v(" "),
-              _vm.errors.first_name
+              _vm.errors.state
                 ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.first_name[0]))
+                    _vm._v(_vm._s(_vm.errors.state[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-9" }, [
+                  _c("label", [_vm._v("Ciudad")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.supplier.city,
+                        expression: "supplier.city"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: { "is-invalid": _vm.errors.city },
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.supplier.city },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.supplier, "city", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.city
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.city[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-3" }, [
+                  _c("label", [_vm._v("Código Postal")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.supplier.zip,
+                        expression: "supplier.zip"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: { "is-invalid": _vm.errors.zip },
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.supplier.zip },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.supplier, "zip", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.zip
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.zip[0]))
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("fieldset", { staticClass: "form-group fieldset1" }, [
+            _c("legend", { staticClass: "legend1" }, [_vm._v("Contacto")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-6" }, [
+                  _c("label", [_vm._v("Primer Nombre")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.supplier.first_name,
+                        expression: "supplier.first_name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: { "is-invalid": _vm.errors.first_name },
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.supplier.first_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.supplier,
+                          "first_name",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.first_name
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.first_name[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c("label", [_vm._v("Segundo Nombre")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.supplier.second_name,
+                        expression: "supplier.second_name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: { "is-invalid": _vm.errors.second_name },
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.supplier.second_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.supplier,
+                          "second_name",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.second_name
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.second_name[0]))
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Apellido")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.supplier.last_name,
+                    expression: "supplier.last_name"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.last_name },
+                attrs: { type: "text" },
+                domProps: { value: _vm.supplier.last_name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.supplier, "last_name", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.last_name
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.last_name[0]))
                   ])
                 : _vm._e()
             ]),
@@ -64056,9 +64524,201 @@ var render = function() {
                     _vm._v(_vm._s(_vm.errors.phone[0]))
                   ])
                 : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Celular")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.supplier.mobile,
+                    expression: "supplier.mobile"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.mobile },
+                attrs: { type: "text" },
+                domProps: { value: _vm.supplier.mobile },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.supplier, "mobile", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.mobile
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.mobile[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Fax")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.supplier.fax,
+                    expression: "supplier.fax"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.fax },
+                attrs: { type: "text" },
+                domProps: { value: _vm.supplier.fax },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.supplier, "fax", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.fax
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.fax[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("E-Mail")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.supplier.email,
+                    expression: "supplier.email"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.email },
+                attrs: { type: "text" },
+                domProps: { value: _vm.supplier.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.supplier, "email", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.email
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.email[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Website")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.supplier.website,
+                    expression: "supplier.website"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.website },
+                attrs: { type: "text" },
+                domProps: { value: _vm.supplier.website },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.supplier, "website", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.website
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.website[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Notas")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.supplier.notes,
+                    expression: "supplier.notes"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.notes },
+                attrs: { type: "textarea" },
+                domProps: { value: _vm.supplier.notes },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.supplier, "notes", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.notes
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.notes[0]))
+                  ])
+                : _vm._e()
             ])
           ])
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-footer px-0 mt-2 bg-transparent clearfix" },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary float-right",
+                attrs: { href: "#", disabled: _vm.submiting },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.create($event)
+                  }
+                }
+              },
+              [
+                _vm.submiting
+                  ? _c("i", { staticClass: "fas fa-spinner fa-spin" })
+                  : _c("i", { staticClass: "fas fa-check" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "ml-1" }, [_vm._v("Grabar")])
+              ]
+            )
+          ]
+        )
       ])
     ])
   ])

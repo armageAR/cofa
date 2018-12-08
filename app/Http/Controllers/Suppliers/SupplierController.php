@@ -39,8 +39,9 @@ class SupplierController extends Controller
     public function store(SupplierRequest $request)
     {
 
-        $supplier = Supplier::create($validated->all());
-        $supplier->contacts()->create($validated->all());
+        $supplier = Supplier::create($request->all());
+        $supplier->contacts()->create($request->all());
+        $supplier->addresses()->create($request->all());
 
         return $supplier;
     }
