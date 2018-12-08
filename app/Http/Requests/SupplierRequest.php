@@ -24,7 +24,7 @@ class SupplierRequest extends FormRequest
     public function rules()
     {
         return [
-            'taxNumber' => 'required|numeric|size:11|unique:suppliers',
+            //'taxNumber' => 'required|numeric|size:11|unique:suppliers',
             'bussinesName' => 'required|string|min:3|max:100',
             'name' => 'required|string|max:50',
             'abbreviation' => 'string|max:10'
@@ -39,8 +39,6 @@ class SupplierRequest extends FormRequest
     public function messages()
     {
         return [
-            // 'taxNumber.required' => 'El CUIT es obligatorio',
-            // 'bussinesName.required' => 'La Razon Social es obligatoria',
             'required' => 'El campo :attribute es obligatorio',
             'size' => 'El campo :attribute debe tener un tamaño de :size',
             'min' => 'El campo :attribute debe tener un minimo de :min',

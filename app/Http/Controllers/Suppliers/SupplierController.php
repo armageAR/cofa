@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Suppliers;
 
 use App\Supplier;
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupplierRequest;
@@ -38,14 +39,8 @@ class SupplierController extends Controller
     public function store(SupplierRequest $request)
     {
 
-        $validated = $request->validated();
-
-        $supplier = Supplier::create([
-            'taxNumber' => $validated->taxNumber,
-            'name' => $validated->name,
-            'bussinesName' => $validated->bussinesName,
-            'abbreviation' => $validated->abbreviation,
-        ]);
+        $supplier = Supplier::create($validated->all());
+        $supplier->contacts()->create($validated->all());
 
         return $supplier;
     }
