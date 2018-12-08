@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item active">{{__('messages.dashboard')}}</li>
     </ol>
     <div class="container">
         <div class="card-body">
