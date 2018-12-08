@@ -57,27 +57,30 @@
             <div class="invalid-feedback" v-if="errors.abbreviation">{{errors.abbreviation[0]}}</div>
           </div>
 
-          <div class="form-group">
-            <label>Nombre</label>
-            <input
-              type="text"
-              class="form-control"
-              :class="{'is-invalid': errors.first_name}"
-              v-model="supplier.first_name"
-            >
-            <div class="invalid-feedback" v-if="errors.first_name">{{errors.first_name[0]}}</div>
-          </div>
+          <fieldset class="form-group fieldset1">
+            <legend class="legend1">Contacto</legend>
+            <div class="form-group">
+              <label>Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                :class="{'is-invalid': errors.first_name}"
+                v-model="supplier.first_name"
+              >
+              <div class="invalid-feedback" v-if="errors.first_name">{{errors.first_name[0]}}</div>
+            </div>
 
-          <div class="form-group">
-            <label>Telefono</label>
-            <input
-              type="text"
-              class="form-control"
-              :class="{'is-invalid': errors.phone}"
-              v-model="supplier.phone"
-            >
-            <div class="invalid-feedback" v-if="errors.phone">{{errors.phone[0]}}</div>
-          </div>
+            <div class="form-group">
+              <label>Telefono</label>
+              <input
+                type="text"
+                class="form-control"
+                :class="{'is-invalid': errors.phone}"
+                v-model="supplier.phone"
+              >
+              <div class="invalid-feedback" v-if="errors.phone">{{errors.phone[0]}}</div>
+            </div>
+          </fieldset>
         </div>
       </div>
     </div>
