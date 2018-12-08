@@ -9,7 +9,7 @@
                     <img src="svg/modulr.svg" class="mb-5" width="150" alt="Modulr Logo">
                 </div>
                 <h1>{{ __('Login') }}</h1>
-                <p class="text-muted">Sign In to your account</p>
+                <p class="text-muted">{{__('Sign In to your account')}}</p>
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -55,7 +55,7 @@
                             </button>
                         </div>
                         <div class="col-8 text-right">
-                            <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                            <a class="btn btn-link px-3" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
                             </a>
                         </div>
@@ -73,7 +73,7 @@
                 <div>
                     <img src="svg/modulr.svg" class="mb-5" width="150" alt="Modulr Logo">
                     <h2>{{ __('Sign up') }}</h2>
-                    <p>If you don't have account create one.</p>
+                    <p>{{__('If you don\'t have account create one.')}}</p>
                     <a class="btn btn-primary active mt-2" href="{{ route('register') }}">{{ __('Register Now!') }}</a>
                 </div>
             </div>
