@@ -11368,6 +11368,8 @@ a.text-dark:focus {
   border-radius: 4px;
   background-color: #f5f5f5;
   padding-left: 10px;
+  margin-top: 0.5em;
+  width: 100%;
 }
 
 .legend1 {

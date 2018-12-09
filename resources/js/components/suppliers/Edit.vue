@@ -148,6 +148,116 @@
                 </div>
               </div>
             </fieldset>
+
+            <br>
+
+            <fieldset class="form-group fieldset1">
+              <legend class="legend1">Contacto</legend>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-6">
+                    <label>Primer Nombre</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :class="{'is-invalid': errors.first_name}"
+                      v-model="supplier.contacts[0].first_name"
+                    >
+                    <div class="invalid-feedback" v-if="errors.first_name">{{errors.first_name[0]}}</div>
+                  </div>
+                  <div class="col-6">
+                    <label>Segundo Nombre</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :class="{'is-invalid': errors.second_name}"
+                      v-model="supplier.contacts[0].second_name"
+                    >
+                    <div
+                      class="invalid-feedback"
+                      v-if="errors.second_name"
+                    >{{errors.second_name[0]}}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Apellido</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{'is-invalid': errors.last_name}"
+                  v-model="supplier.contacts[0].last_name"
+                >
+                <div class="invalid-feedback" v-if="errors.last_name">{{errors.last_name[0]}}</div>
+              </div>
+
+              <div class="form-group">
+                <label>Telefono</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{'is-invalid': errors.phone}"
+                  v-model="supplier.contacts[0].phone"
+                >
+                <div class="invalid-feedback" v-if="errors.phone">{{errors.phone[0]}}</div>
+              </div>
+
+              <div class="form-group">
+                <label>Celular</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{'is-invalid': errors.mobile}"
+                  v-model="supplier.contacts[0].mobile"
+                >
+                <div class="invalid-feedback" v-if="errors.mobile">{{errors.mobile[0]}}</div>
+              </div>
+
+              <div class="form-group">
+                <label>Fax</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{'is-invalid': errors.fax}"
+                  v-model="supplier.contacts[0].fax"
+                >
+                <div class="invalid-feedback" v-if="errors.fax">{{errors.fax[0]}}</div>
+              </div>
+
+              <div class="form-group">
+                <label>E-Mail</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{'is-invalid': errors.email}"
+                  v-model="supplier.contacts[0].email"
+                >
+                <div class="invalid-feedback" v-if="errors.email">{{errors.email[0]}}</div>
+              </div>
+
+              <div class="form-group">
+                <label>Website</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{'is-invalid': errors.website}"
+                  v-model="supplier.contacts[0].website"
+                >
+                <div class="invalid-feedback" v-if="errors.website">{{errors.website[0]}}</div>
+              </div>
+
+              <div class="form-group">
+                <label>Notas</label>
+                <input
+                  type="textarea"
+                  class="form-control"
+                  :class="{'is-invalid': errors.notes}"
+                  v-model="supplier.contacts[0].notes"
+                >
+                <div class="invalid-feedback" v-if="errors.notes">{{errors.notes[0]}}</div>
+              </div>
+            </fieldset>
           </div>
           <div class="row" v-else>
             <div class="col-md-12">
