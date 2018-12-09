@@ -54,7 +54,10 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        return Supplier::findOrFail($supplier);
+        $sup = Supplier::findOrFail($supplier)->first();
+        $sup = $sup->load('contacts');
+        $sup = $sup->load('addresses');
+        return $sup;
     }
 
     /**
@@ -143,7 +146,10 @@ class SupplierController extends Controller
 
     public function getSupplier($supplier)
     {
-        $supplier = Supplier::findOrFail($supplier);
+        $supplier = Supplier::findOrFail($supplier)->with('addresses')->first();
+            //->with('contacts')->first()
+
+
 
         return $supplier;
     }

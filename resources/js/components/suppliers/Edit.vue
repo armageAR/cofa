@@ -75,6 +75,79 @@
                 <p class="form-control-plaintext text-muted">{{supplier.created_at | moment("LLL")}}</p>
               </div>
             </div>
+            <fieldset class="form-group fieldset1">
+              <legend class="legend1">Dirección</legend>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-8">
+                    <label>Calle</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :class="{'is-invalid': errors.street}"
+                      v-model="supplier.addresses[0].street"
+                    >
+                    <div class="invalid-feedback" v-if="errors.street">{{errors.street[0]}}</div>
+                  </div>
+                  <div class="col-2">
+                    <label>Número</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :class="{'is-invalid': errors.number}"
+                      v-model="supplier.addresses[0].number"
+                    >
+                    <div class="invalid-feedback" v-if="errors.number">{{errors.number[0]}}</div>
+                  </div>
+                  <div class="col-2">
+                    <label>Depto</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :class="{'is-invalid': errors.department}"
+                      v-model="supplier.addresses[0].department"
+                    >
+                    <div class="invalid-feedback" v-if="errors.department">{{errors.department[0]}}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Provincia</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{'is-invalid': errors.state}"
+                  v-model="supplier.addresses[0].state"
+                >
+                <div class="invalid-feedback" v-if="errors.state">{{errors.state[0]}}</div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-9">
+                    <label>Ciudad</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :class="{'is-invalid': errors.city}"
+                      v-model="supplier.addresses[0].city"
+                    >
+                    <div class="invalid-feedback" v-if="errors.city">{{errors.city[0]}}</div>
+                  </div>
+                  <div class="col-3">
+                    <label>Código Postal</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :class="{'is-invalid': errors.zip}"
+                      v-model="supplier.addresses[0].zip"
+                    >
+                    <div class="invalid-feedback" v-if="errors.zip">{{errors.zip[0]}}</div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
           </div>
           <div class="row" v-else>
             <div class="col-md-12">
@@ -110,7 +183,7 @@ export default {
       let str = window.location.pathname;
       let res = str.split("/");
       axios
-        .get(`/api/suppliers/getSupplier/${res[2]}`)
+        .get(`/api/suppliers/${res[2]}`)
         .then(response => {
           this.supplier = response.data;
         })
