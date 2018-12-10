@@ -15,12 +15,13 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('street', 60)->nullable();
-            $table->string('number', 60)->nullable();
-            $table->string('department', 60)->nullable();
+            $table->string('street', 60)->nullable()->comment("Street");
+            $table->string('number', 20)->nullable()->comment("House Number");
+            $table->string('apartment', 20)->nullable();
             $table->string('city', 60)->nullable();
             $table->string('state', 60)->nullable();
-            $table->string('zip', 10)->nullable();
+            $table->string('zip', 10)->nullable()->comment("Postal Code");
+            $table->string('countryCode', 2)->nullable()->default('ar');
 
             $table->enum('type', config('cofa.address.type'))->nullable();
 
