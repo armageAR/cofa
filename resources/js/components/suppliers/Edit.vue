@@ -285,7 +285,6 @@ export default {
   },
   mounted() {
     this.getSupplier();
-    console.log("success");
   },
   methods: {
     getSupplier() {
@@ -295,6 +294,7 @@ export default {
       axios
         .get(`/api/suppliers/${res[2]}`)
         .then(response => {
+          //console.log(response);
           this.supplier = response.data;
         })
         .catch(error => {

@@ -67,7 +67,7 @@
                     type="text"
                     class="form-control"
                     :class="{'is-invalid': errors.street}"
-                    v-model="supplier.street"
+                    v-model="address.street"
                   >
                   <div class="invalid-feedback" v-if="errors.street">{{errors.street[0]}}</div>
                 </div>
@@ -77,7 +77,7 @@
                     type="text"
                     class="form-control"
                     :class="{'is-invalid': errors.number}"
-                    v-model="supplier.number"
+                    v-model="address.number"
                   >
                   <div class="invalid-feedback" v-if="errors.number">{{errors.number[0]}}</div>
                 </div>
@@ -87,7 +87,7 @@
                     type="text"
                     class="form-control"
                     :class="{'is-invalid': errors.department}"
-                    v-model="supplier.department"
+                    v-model="address.department"
                   >
                   <div class="invalid-feedback" v-if="errors.department">{{errors.department[0]}}</div>
                 </div>
@@ -100,7 +100,7 @@
                 type="text"
                 class="form-control"
                 :class="{'is-invalid': errors.state}"
-                v-model="supplier.state"
+                v-model="address.state"
               >
               <div class="invalid-feedback" v-if="errors.state">{{errors.state[0]}}</div>
             </div>
@@ -113,7 +113,7 @@
                     type="text"
                     class="form-control"
                     :class="{'is-invalid': errors.city}"
-                    v-model="supplier.city"
+                    v-model="address.city"
                   >
                   <div class="invalid-feedback" v-if="errors.city">{{errors.city[0]}}</div>
                 </div>
@@ -123,7 +123,7 @@
                     type="text"
                     class="form-control"
                     :class="{'is-invalid': errors.zip}"
-                    v-model="supplier.zip"
+                    v-model="address.zip"
                   >
                   <div class="invalid-feedback" v-if="errors.zip">{{errors.zip[0]}}</div>
                 </div>
@@ -143,7 +143,7 @@
                     type="text"
                     class="form-control"
                     :class="{'is-invalid': errors.first_name}"
-                    v-model="supplier.first_name"
+                    v-model="contact.first_name"
                   >
                   <div class="invalid-feedback" v-if="errors.first_name">{{errors.first_name[0]}}</div>
                 </div>
@@ -153,7 +153,7 @@
                     type="text"
                     class="form-control"
                     :class="{'is-invalid': errors.middle_name}"
-                    v-model="supplier.middle_name"
+                    v-model="contact.middle_name"
                   >
                   <div class="invalid-feedback" v-if="errors.middle_name">{{errors.middle_name[0]}}</div>
                 </div>
@@ -166,7 +166,7 @@
                 type="text"
                 class="form-control"
                 :class="{'is-invalid': errors.last_name}"
-                v-model="supplier.last_name"
+                v-model="contact.last_name"
               >
               <div class="invalid-feedback" v-if="errors.last_name">{{errors.last_name[0]}}</div>
             </div>
@@ -177,7 +177,7 @@
                 type="text"
                 class="form-control"
                 :class="{'is-invalid': errors.phone}"
-                v-model="supplier.phone"
+                v-model="contact.phone"
               >
               <div class="invalid-feedback" v-if="errors.phone">{{errors.phone[0]}}</div>
             </div>
@@ -188,7 +188,7 @@
                 type="text"
                 class="form-control"
                 :class="{'is-invalid': errors.mobile}"
-                v-model="supplier.mobile"
+                v-model="contact.mobile"
               >
               <div class="invalid-feedback" v-if="errors.mobile">{{errors.mobile[0]}}</div>
             </div>
@@ -199,7 +199,7 @@
                 type="text"
                 class="form-control"
                 :class="{'is-invalid': errors.fax}"
-                v-model="supplier.fax"
+                v-model="contact.fax"
               >
               <div class="invalid-feedback" v-if="errors.fax">{{errors.fax[0]}}</div>
             </div>
@@ -210,7 +210,7 @@
                 type="text"
                 class="form-control"
                 :class="{'is-invalid': errors.email}"
-                v-model="supplier.email"
+                v-model="contact.email"
               >
               <div class="invalid-feedback" v-if="errors.email">{{errors.email[0]}}</div>
             </div>
@@ -221,7 +221,7 @@
                 type="text"
                 class="form-control"
                 :class="{'is-invalid': errors.website}"
-                v-model="supplier.website"
+                v-model="contact.website"
               >
               <div class="invalid-feedback" v-if="errors.website">{{errors.website[0]}}</div>
             </div>
@@ -232,7 +232,7 @@
                 type="textarea"
                 class="form-control"
                 :class="{'is-invalid': errors.notes}"
-                v-model="supplier.notes"
+                v-model="contact.notes"
               >
               <div class="invalid-feedback" v-if="errors.notes">{{errors.notes[0]}}</div>
             </div>
@@ -260,6 +260,8 @@ export default {
   data() {
     return {
       supplier: {},
+      address: {},
+      contact: {},
       errors: {},
       submiting: false
     };
@@ -270,7 +272,12 @@ export default {
       if (!this.submiting) {
         this.submiting = true;
         axios
-          .post(`/api/suppliers/store`, this.supplier)
+          .post(
+            `/api/suppliers/store`,
+            this.supplier,
+            this.address,
+            this.contact
+          )
           .then(response => {
             this.$toasted.global.error("Proveedor creado!");
             location.href = "/suppliers";

@@ -43,8 +43,8 @@ class SupplierController extends Controller
     {
 
         $supplier = Supplier::create($request->all());
-        $supplier->contacts()->create($request->all());
-        $supplier->addresses()->create($request->all());
+        $supplier->contacts()->create((array)$request->contact);
+        $supplier->addresses()->create((array)$request->address);
 
         return $supplier;
     }

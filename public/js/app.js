@@ -63974,6 +63974,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       supplier: {},
+      address: {},
+      contact: {},
       errors: {},
       submiting: false
     };
@@ -63986,7 +63988,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (!this.submiting) {
         this.submiting = true;
-        axios.post("/api/suppliers/store", this.supplier).then(function (response) {
+        axios.post("/api/suppliers/store", this.supplier, this.address, this.contact).then(function (response) {
           _this.$toasted.global.error("Proveedor creado!");
           location.href = "/suppliers";
         }).catch(function (error) {
@@ -64188,20 +64190,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.supplier.street,
-                        expression: "supplier.street"
+                        value: _vm.address.street,
+                        expression: "address.street"
                       }
                     ],
                     staticClass: "form-control",
                     class: { "is-invalid": _vm.errors.street },
                     attrs: { type: "text" },
-                    domProps: { value: _vm.supplier.street },
+                    domProps: { value: _vm.address.street },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.supplier, "street", $event.target.value)
+                        _vm.$set(_vm.address, "street", $event.target.value)
                       }
                     }
                   }),
@@ -64221,20 +64223,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.supplier.number,
-                        expression: "supplier.number"
+                        value: _vm.address.number,
+                        expression: "address.number"
                       }
                     ],
                     staticClass: "form-control",
                     class: { "is-invalid": _vm.errors.number },
                     attrs: { type: "text" },
-                    domProps: { value: _vm.supplier.number },
+                    domProps: { value: _vm.address.number },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.supplier, "number", $event.target.value)
+                        _vm.$set(_vm.address, "number", $event.target.value)
                       }
                     }
                   }),
@@ -64254,24 +64256,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.supplier.department,
-                        expression: "supplier.department"
+                        value: _vm.address.department,
+                        expression: "address.department"
                       }
                     ],
                     staticClass: "form-control",
                     class: { "is-invalid": _vm.errors.department },
                     attrs: { type: "text" },
-                    domProps: { value: _vm.supplier.department },
+                    domProps: { value: _vm.address.department },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.supplier,
-                          "department",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.address, "department", $event.target.value)
                       }
                     }
                   }),
@@ -64293,20 +64291,20 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.supplier.state,
-                    expression: "supplier.state"
+                    value: _vm.address.state,
+                    expression: "address.state"
                   }
                 ],
                 staticClass: "form-control",
                 class: { "is-invalid": _vm.errors.state },
                 attrs: { type: "text" },
-                domProps: { value: _vm.supplier.state },
+                domProps: { value: _vm.address.state },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.supplier, "state", $event.target.value)
+                    _vm.$set(_vm.address, "state", $event.target.value)
                   }
                 }
               }),
@@ -64328,20 +64326,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.supplier.city,
-                        expression: "supplier.city"
+                        value: _vm.address.city,
+                        expression: "address.city"
                       }
                     ],
                     staticClass: "form-control",
                     class: { "is-invalid": _vm.errors.city },
                     attrs: { type: "text" },
-                    domProps: { value: _vm.supplier.city },
+                    domProps: { value: _vm.address.city },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.supplier, "city", $event.target.value)
+                        _vm.$set(_vm.address, "city", $event.target.value)
                       }
                     }
                   }),
@@ -64361,20 +64359,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.supplier.zip,
-                        expression: "supplier.zip"
+                        value: _vm.address.zip,
+                        expression: "address.zip"
                       }
                     ],
                     staticClass: "form-control",
                     class: { "is-invalid": _vm.errors.zip },
                     attrs: { type: "text" },
-                    domProps: { value: _vm.supplier.zip },
+                    domProps: { value: _vm.address.zip },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.supplier, "zip", $event.target.value)
+                        _vm.$set(_vm.address, "zip", $event.target.value)
                       }
                     }
                   }),
@@ -64404,24 +64402,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.supplier.first_name,
-                        expression: "supplier.first_name"
+                        value: _vm.contact.first_name,
+                        expression: "contact.first_name"
                       }
                     ],
                     staticClass: "form-control",
                     class: { "is-invalid": _vm.errors.first_name },
                     attrs: { type: "text" },
-                    domProps: { value: _vm.supplier.first_name },
+                    domProps: { value: _vm.contact.first_name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.supplier,
-                          "first_name",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.contact, "first_name", $event.target.value)
                       }
                     }
                   }),
@@ -64441,21 +64435,21 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.supplier.middle_name,
-                        expression: "supplier.middle_name"
+                        value: _vm.contact.middle_name,
+                        expression: "contact.middle_name"
                       }
                     ],
                     staticClass: "form-control",
                     class: { "is-invalid": _vm.errors.middle_name },
                     attrs: { type: "text" },
-                    domProps: { value: _vm.supplier.middle_name },
+                    domProps: { value: _vm.contact.middle_name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.$set(
-                          _vm.supplier,
+                          _vm.contact,
                           "middle_name",
                           $event.target.value
                         )
@@ -64480,20 +64474,20 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.supplier.last_name,
-                    expression: "supplier.last_name"
+                    value: _vm.contact.last_name,
+                    expression: "contact.last_name"
                   }
                 ],
                 staticClass: "form-control",
                 class: { "is-invalid": _vm.errors.last_name },
                 attrs: { type: "text" },
-                domProps: { value: _vm.supplier.last_name },
+                domProps: { value: _vm.contact.last_name },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.supplier, "last_name", $event.target.value)
+                    _vm.$set(_vm.contact, "last_name", $event.target.value)
                   }
                 }
               }),
@@ -64513,20 +64507,20 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.supplier.phone,
-                    expression: "supplier.phone"
+                    value: _vm.contact.phone,
+                    expression: "contact.phone"
                   }
                 ],
                 staticClass: "form-control",
                 class: { "is-invalid": _vm.errors.phone },
                 attrs: { type: "text" },
-                domProps: { value: _vm.supplier.phone },
+                domProps: { value: _vm.contact.phone },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.supplier, "phone", $event.target.value)
+                    _vm.$set(_vm.contact, "phone", $event.target.value)
                   }
                 }
               }),
@@ -64546,20 +64540,20 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.supplier.mobile,
-                    expression: "supplier.mobile"
+                    value: _vm.contact.mobile,
+                    expression: "contact.mobile"
                   }
                 ],
                 staticClass: "form-control",
                 class: { "is-invalid": _vm.errors.mobile },
                 attrs: { type: "text" },
-                domProps: { value: _vm.supplier.mobile },
+                domProps: { value: _vm.contact.mobile },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.supplier, "mobile", $event.target.value)
+                    _vm.$set(_vm.contact, "mobile", $event.target.value)
                   }
                 }
               }),
@@ -64579,20 +64573,20 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.supplier.fax,
-                    expression: "supplier.fax"
+                    value: _vm.contact.fax,
+                    expression: "contact.fax"
                   }
                 ],
                 staticClass: "form-control",
                 class: { "is-invalid": _vm.errors.fax },
                 attrs: { type: "text" },
-                domProps: { value: _vm.supplier.fax },
+                domProps: { value: _vm.contact.fax },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.supplier, "fax", $event.target.value)
+                    _vm.$set(_vm.contact, "fax", $event.target.value)
                   }
                 }
               }),
@@ -64612,20 +64606,20 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.supplier.email,
-                    expression: "supplier.email"
+                    value: _vm.contact.email,
+                    expression: "contact.email"
                   }
                 ],
                 staticClass: "form-control",
                 class: { "is-invalid": _vm.errors.email },
                 attrs: { type: "text" },
-                domProps: { value: _vm.supplier.email },
+                domProps: { value: _vm.contact.email },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.supplier, "email", $event.target.value)
+                    _vm.$set(_vm.contact, "email", $event.target.value)
                   }
                 }
               }),
@@ -64645,20 +64639,20 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.supplier.website,
-                    expression: "supplier.website"
+                    value: _vm.contact.website,
+                    expression: "contact.website"
                   }
                 ],
                 staticClass: "form-control",
                 class: { "is-invalid": _vm.errors.website },
                 attrs: { type: "text" },
-                domProps: { value: _vm.supplier.website },
+                domProps: { value: _vm.contact.website },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.supplier, "website", $event.target.value)
+                    _vm.$set(_vm.contact, "website", $event.target.value)
                   }
                 }
               }),
@@ -64678,20 +64672,20 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.supplier.notes,
-                    expression: "supplier.notes"
+                    value: _vm.contact.notes,
+                    expression: "contact.notes"
                   }
                 ],
                 staticClass: "form-control",
                 class: { "is-invalid": _vm.errors.notes },
                 attrs: { type: "textarea" },
-                domProps: { value: _vm.supplier.notes },
+                domProps: { value: _vm.contact.notes },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.supplier, "notes", $event.target.value)
+                    _vm.$set(_vm.contact, "notes", $event.target.value)
                   }
                 }
               }),
@@ -65085,7 +65079,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   mounted: function mounted() {
     this.getSupplier();
-    console.log("success");
   },
 
   methods: {
@@ -65096,6 +65089,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var str = window.location.pathname;
       var res = str.split("/");
       axios.get("/api/suppliers/" + res[2]).then(function (response) {
+        //console.log(response);
         _this.supplier = response.data;
       }).catch(function (error) {
         _this.$toasted.global.error("El proveedor no existe!");
