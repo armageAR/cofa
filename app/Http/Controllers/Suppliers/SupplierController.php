@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Suppliers;
 
 use App\Supplier;
 use App\Contact;
+use App\Address;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupplierRequest;
+
 
 class SupplierController extends Controller
 {
@@ -80,29 +83,22 @@ class SupplierController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'taxNumber' => 'required|integer', //|unique:suppliers
-            'bussinesName' => 'required|string',
-            'name' => 'required|string'
-        ]);
+
+
+        // $this->validate($request, [
+        //     'taxNumber' => 'required|integer', //|unique:suppliers
+        //     'bussinesName' => 'required|string',
+        //     'name' => 'required|string'
+        // ]);
 
         $supplier = Supplier::find($request->id);
+        $supplier->update($request->all());
 
+        $contact = Contact::find($supplier->contacts->first()->id);
+        $contact->update($request->contacts[0]);
 
-        if ($supplier->taxNumber != $request->taxNumber) {
-            $supplier->taxNumber = $request->taxNumber;
-        }
-        if ($supplier->bussinesName != $request->bussinesName) {
-            $supplier->bussinesName = $request->bussinesName;
-        }
-        if ($supplier->name != $request->name) {
-            $supplier->name = $request->name;
-        }
-        if ($supplier->abbreviation != $request->abbreviation) {
-            $supplier->abbreviation = $request->abbreviation;
-        }
-
-        $supplier->save();
+        $address = Address::find($supplier->addresses->first()->id);
+        $address->update($request->addresses[0]);
 
         return $supplier;
     }

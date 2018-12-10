@@ -64441,14 +64441,14 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.supplier.second_name,
-                        expression: "supplier.second_name"
+                        value: _vm.supplier.middle_name,
+                        expression: "supplier.middle_name"
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.errors.second_name },
+                    class: { "is-invalid": _vm.errors.middle_name },
                     attrs: { type: "text" },
-                    domProps: { value: _vm.supplier.second_name },
+                    domProps: { value: _vm.supplier.middle_name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -64456,16 +64456,16 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.supplier,
-                          "second_name",
+                          "middle_name",
                           $event.target.value
                         )
                       }
                     }
                   }),
                   _vm._v(" "),
-                  _vm.errors.second_name
+                  _vm.errors.middle_name
                     ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.second_name[0]))
+                        _vm._v(_vm._s(_vm.errors.middle_name[0]))
                       ])
                     : _vm._e()
                 ])
@@ -65699,15 +65699,15 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.supplier.contacts[0].second_name,
-                              expression: "supplier.contacts[0].second_name"
+                              value: _vm.supplier.contacts[0].middle_name,
+                              expression: "supplier.contacts[0].middle_name"
                             }
                           ],
                           staticClass: "form-control",
-                          class: { "is-invalid": _vm.errors.second_name },
+                          class: { "is-invalid": _vm.errors.middle_name },
                           attrs: { type: "text" },
                           domProps: {
-                            value: _vm.supplier.contacts[0].second_name
+                            value: _vm.supplier.contacts[0].middle_name
                           },
                           on: {
                             input: function($event) {
@@ -65716,16 +65716,16 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.supplier.contacts[0],
-                                "second_name",
+                                "middle_name",
                                 $event.target.value
                               )
                             }
                           }
                         }),
                         _vm._v(" "),
-                        _vm.errors.second_name
+                        _vm.errors.middle_name
                           ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(_vm._s(_vm.errors.second_name[0]))
+                              _vm._v(_vm._s(_vm.errors.middle_name[0]))
                             ])
                           : _vm._e()
                       ])

@@ -152,10 +152,10 @@
                   <input
                     type="text"
                     class="form-control"
-                    :class="{'is-invalid': errors.second_name}"
-                    v-model="supplier.second_name"
+                    :class="{'is-invalid': errors.middle_name}"
+                    v-model="supplier.middle_name"
                   >
-                  <div class="invalid-feedback" v-if="errors.second_name">{{errors.second_name[0]}}</div>
+                  <div class="invalid-feedback" v-if="errors.middle_name">{{errors.middle_name[0]}}</div>
                 </div>
               </div>
             </div>
