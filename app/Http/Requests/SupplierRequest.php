@@ -24,7 +24,7 @@ class SupplierRequest extends FormRequest
     public function rules()
     {
         return [
-            'taxNumber' => 'required|numeric|digits:11|unique:suppliers',
+            'taxNumber' => 'required|numeric|digits:11|unique:suppliers,taxNumber,' . $this->id,
             'bussinesName' => 'required|string|min:3|max:100',
             'name' => 'required|string|max:50',
             'abbreviation' => 'string|max:10',
@@ -50,6 +50,7 @@ class SupplierRequest extends FormRequest
             'min' => 'El campo :attribute debe tener un minimo de :min',
             'digits' => 'El campo :attribute debe tener :digits digitos',
             'email' => 'El campo :attribute debe ser una dirección valida',
+            'unique' => 'El campo :attribute ya se encuentra registrado en la base de datos',
         ];
     }
 

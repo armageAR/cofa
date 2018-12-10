@@ -84,7 +84,7 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(SupplierRequest $request)
     {
 
 
