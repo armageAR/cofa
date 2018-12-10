@@ -9,7 +9,7 @@ use App\Address;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupplierRequest;
-
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
@@ -42,9 +42,12 @@ class SupplierController extends Controller
     public function store(SupplierRequest $request)
     {
 
-        $supplier = Supplier::create($request->all());
-        $supplier->contacts()->create((array)$request->contact);
-        $supplier->addresses()->create((array)$request->address);
+        DB::transaction(function () use ($request) {
+            $supplier = Supplier::create($request->all());
+            $supplier->contacts()->create((array)$request->contact);
+            $supplier->addresses()->create((array)$request->address);
+        });
+
 
         return $supplier;
     }
