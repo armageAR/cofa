@@ -28,12 +28,17 @@ class SupplierRequest extends FormRequest
             'bussinesName' => 'required|string|min:3|max:100',
             'name' => 'required|string|max:50',
             'abbreviation' => 'string|max:10',
-
-            'first_name' => 'string|max:20',
-            'middle_name' => 'string|max:20',
-            'last_name' => 'string|max:20',
-            'email' => 'string|max:60',
-            'website' => 'string|max:100',
+            //Contact
+            'contact.first_name' => 'required|string|max:20',
+            'contact.middle_name' => 'string|max:20',
+            'contact.last_name' => 'required|string|max:20',
+            'contact.email' => 'required|email|max:60',
+            'contact.website' => 'string|max:100',
+            //address
+            'address.street' => 'required|string|max:60',
+            'address.number' => 'required|string|max:20',
+            'address.city' => 'required|string|max:60',
+            'address.state' => 'required|string|max:60',
         ];
     }
 
