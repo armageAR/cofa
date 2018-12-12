@@ -1,7 +1,10 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-10">
-            <div class="card-header px-0 mt-2 bg-transparent clearfix">
+            <div
+                v-if="createForm"
+                class="card-header px-0 mt-2 bg-transparent clearfix"
+            >
                 <h4 class="float-left pt-2">Nuevo Proveedor</h4>
                 <div class="card-header-actions mr-1">
                     <a
@@ -13,6 +16,34 @@
                         <i class="fas fa-spinner fa-spin" v-if="submiting"></i>
                         <i class="fas fa-check" v-else></i>
                         <span class="ml-1">Grabar</span>
+                    </a>
+                </div>
+            </div>
+            <div v-else class="card-header px-0 mt-2 bg-transparent clearfix">
+                <h4 class="float-left pt-2">Modificar Proveedor</h4>
+                <div class="card-header-actions mr-1">
+                    <a
+                        class="btn btn-primary"
+                        href="#"
+                        :disabled="submiting"
+                        @click.prevent="update"
+                    >
+                        <i class="fas fa-spinner fa-spin" v-if="submiting"></i>
+                        <i class="fas fa-check" v-else></i>
+                        <span class="ml-1">Guardar</span>
+                    </a>
+                    <a
+                        class="card-header-action ml-1"
+                        href="#"
+                        :disabled="submitingDestroy"
+                        @click.prevent="destroy"
+                    >
+                        <i
+                            class="fas fa-spinner fa-spin"
+                            v-if="submitingDestroy"
+                        ></i>
+                        <i class="far fa-trash-alt" v-else></i>
+                        <span class="d-md-down-none ml-1">Eliminar</span>
                     </a>
                 </div>
             </div>
@@ -117,7 +148,7 @@
                                     type="text"
                                     class="form-control"
                                     :class="{'is-invalid': errors.get('address.apartment')}"
-                                    v-model="address.department"
+                                    v-model="address.apartment"
                                 />
                                 <span
                                     class="invalid-feedback"
@@ -320,7 +351,10 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="card-footer px-0 mt-2 bg-transparent clearfix">
+            <div
+                v-if="createForm"
+                class="card-footer px-0 mt-2 bg-transparent clearfix"
+            >
                 <a
                     class="btn btn-primary float-right"
                     href="#"
@@ -331,6 +365,33 @@
                     <i class="fas fa-check" v-else></i>
                     <span class="ml-1">Grabar</span>
                 </a>
+            </div>
+            <div v-else class="card-header px-0 mt-2 bg-transparent clearfix">
+                <div class="card-header-actions mr-1">
+                    <a
+                        class="btn btn-primary"
+                        href="#"
+                        :disabled="submiting"
+                        @click.prevent="update"
+                    >
+                        <i class="fas fa-spinner fa-spin" v-if="submiting"></i>
+                        <i class="fas fa-check" v-else></i>
+                        <span class="ml-1">Guardar</span>
+                    </a>
+                    <a
+                        class="card-header-action ml-1"
+                        href="#"
+                        :disabled="submitingDestroy"
+                        @click.prevent="destroy"
+                    >
+                        <i
+                            class="fas fa-spinner fa-spin"
+                            v-if="submitingDestroy"
+                        ></i>
+                        <i class="far fa-trash-alt" v-else></i>
+                        <span class="d-md-down-none ml-1">Eliminar</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

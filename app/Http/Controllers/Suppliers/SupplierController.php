@@ -101,14 +101,14 @@ class SupplierController extends Controller
         //     'name' => 'required|string'
         // ]);
 
-        $supplier = Supplier::find($request->id);
-        $supplier->update($request->all());
+        $supplier = Supplier::find($request->supplier['id']);
+        $supplier->update((array)$request->supplier);
 
         $contact = Contact::find($supplier->contacts->first()->id);
-        $contact->update($request->contacts[0]);
+        $contact->update((array)$request->contact);
 
         $address = Address::find($supplier->addresses->first()->id);
-        $address->update($request->addresses[0]);
+        $address->update((array)$request->address);
 
         return $supplier;
     }

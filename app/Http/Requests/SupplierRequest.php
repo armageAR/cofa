@@ -24,10 +24,10 @@ class SupplierRequest extends FormRequest
     public function rules()
     {
         return [
-            'supplier.taxNumber' => 'required|numeric|digits:11|unique:suppliers,taxNumber,' . $this->taxNumber,
+            'supplier.taxNumber' => 'required|numeric|digits:11|unique:suppliers,taxNumber,' . $this->supplier['id'],
             'supplier.bussinesName' => 'required|string|min:3|max:100',
             'supplier.name' => 'required|string|max:50',
-            'supplier.abbreviation' => 'string|max:10',
+            'supplier.abbreviation' => 'max:10',
         //Contact
             'contact.first_name' => 'required|string|max:20',
             'contact.middle_name' => 'string|max:20',
