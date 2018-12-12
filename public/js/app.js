@@ -63712,263 +63712,36 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+//
+//
+
+var Errors = function () {
+  function Errors() {
+    _classCallCheck(this, Errors);
+
+    this.errors = {};
+  }
+
+  _createClass(Errors, [{
+    key: "get",
+    value: function get(field) {
+      if (this.errors[field]) {
+        return this.errors[field][0];
+      }
+    }
+  }, {
+    key: "record",
+    value: function record(errors) {
+      this.errors = errors;
+    }
+  }]);
+
+  return Errors;
+}();
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -63976,7 +63749,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       supplier: {},
       address: {},
       contact: {},
-      errors: {},
+      errors: new Errors(),
       submiting: false
     };
   },
@@ -63988,11 +63761,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (!this.submiting) {
         this.submiting = true;
-        axios.post("/api/suppliers/store", this.supplier, this.address, this.contact).then(function (response) {
+        axios.post("/api/suppliers/store", {
+          supplier: this.supplier,
+          address: this.address,
+          contact: this.contact
+        }).then(function (response) {
           _this.$toasted.global.error("Proveedor creado!");
           location.href = "/suppliers";
         }).catch(function (error) {
-          _this.errors = error.response.data.errors;
+          //console.log(error.response.data.errors);
+          _this.errors.record(error.response.data.errors);
           _this.submiting = false;
         });
       }
@@ -64058,8 +63836,8 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              class: { "is-invalid": _vm.errors.bussinesName },
-              attrs: { type: "text" },
+              class: { "is-invalid": _vm.errors.get("supplier.bussinesName") },
+              attrs: { type: "text", name: "supplier.bussinesName" },
               domProps: { value: _vm.supplier.bussinesName },
               on: {
                 input: function($event) {
@@ -64071,10 +63849,13 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm.errors.bussinesName
-              ? _c("div", { staticClass: "invalid-feedback" }, [
-                  _vm._v(_vm._s(_vm.errors.bussinesName[0]))
-                ])
+            _vm.errors.get("supplier.bussinesName")
+              ? _c("span", {
+                  staticClass: "invalid-feedback",
+                  domProps: {
+                    textContent: _vm._s(_vm.errors.get("supplier.bussinesName"))
+                  }
+                })
               : _vm._e()
           ]),
           _vm._v(" "),
@@ -64091,7 +63872,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              class: { "is-invalid": _vm.errors.taxNumber },
+              class: { "is-invalid": _vm.errors.get("supplier.taxNumber") },
               attrs: { type: "text" },
               domProps: { value: _vm.supplier.taxNumber },
               on: {
@@ -64104,10 +63885,13 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm.errors.taxNumber
-              ? _c("div", { staticClass: "invalid-feedback" }, [
-                  _vm._v(_vm._s(_vm.errors.taxNumber[0]))
-                ])
+            _vm.errors.get("supplier.taxNumber")
+              ? _c("span", {
+                  staticClass: "invalid-feedback",
+                  domProps: {
+                    textContent: _vm._s(_vm.errors.get("supplier.taxNumber"))
+                  }
+                })
               : _vm._e()
           ]),
           _vm._v(" "),
@@ -64124,7 +63908,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              class: { "is-invalid": _vm.errors.name },
+              class: { "is-invalid": _vm.errors.get("supplier.name") },
               attrs: { type: "text" },
               domProps: { value: _vm.supplier.name },
               on: {
@@ -64137,10 +63921,13 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm.errors.name
-              ? _c("div", { staticClass: "invalid-feedback" }, [
-                  _vm._v(_vm._s(_vm.errors.name[0]))
-                ])
+            _vm.errors.get("supplier.name")
+              ? _c("span", {
+                  staticClass: "invalid-feedback",
+                  domProps: {
+                    textContent: _vm._s(_vm.errors.get("supplier.name"))
+                  }
+                })
               : _vm._e()
           ]),
           _vm._v(" "),
@@ -64157,7 +63944,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              class: { "is-invalid": _vm.errors.abbreviation },
+              class: { "is-invalid": _vm.errors.get("supplier.abbreviation") },
               attrs: { type: "text" },
               domProps: { value: _vm.supplier.abbreviation },
               on: {
@@ -64170,10 +63957,13 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm.errors.abbreviation
-              ? _c("div", { staticClass: "invalid-feedback" }, [
-                  _vm._v(_vm._s(_vm.errors.abbreviation[0]))
-                ])
+            _vm.errors.get("supplier.abbreviation")
+              ? _c("span", {
+                  staticClass: "invalid-feedback",
+                  domProps: {
+                    textContent: _vm._s(_vm.errors.get("supplier.abbreviation"))
+                  }
+                })
               : _vm._e()
           ]),
           _vm._v(" "),
@@ -64195,7 +63985,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.errors.street },
+                    class: { "is-invalid": _vm.errors.get("address.street") },
                     attrs: { type: "text" },
                     domProps: { value: _vm.address.street },
                     on: {
@@ -64208,10 +63998,13 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.errors.street
-                    ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.street[0]))
-                      ])
+                  _vm.errors.get("address.street")
+                    ? _c("span", {
+                        staticClass: "invalid-feedback",
+                        domProps: {
+                          textContent: _vm._s(_vm.errors.get("address.street"))
+                        }
+                      })
                     : _vm._e()
                 ]),
                 _vm._v(" "),
@@ -64228,7 +64021,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.errors.number },
+                    class: { "is-invalid": _vm.errors.get("address.number") },
                     attrs: { type: "text" },
                     domProps: { value: _vm.address.number },
                     on: {
@@ -64241,10 +64034,13 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.errors.number
-                    ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.number[0]))
-                      ])
+                  _vm.errors.get("address.nomber")
+                    ? _c("span", {
+                        staticClass: "invalid-feedback",
+                        domProps: {
+                          textContent: _vm._s(_vm.errors.get("address.nomber"))
+                        }
+                      })
                     : _vm._e()
                 ]),
                 _vm._v(" "),
@@ -64261,7 +64057,9 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.errors.department },
+                    class: {
+                      "is-invalid": _vm.errors.get("address.apartment")
+                    },
                     attrs: { type: "text" },
                     domProps: { value: _vm.address.department },
                     on: {
@@ -64274,10 +64072,15 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.errors.department
-                    ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.department[0]))
-                      ])
+                  _vm.errors.get("address.apartment")
+                    ? _c("span", {
+                        staticClass: "invalid-feedback",
+                        domProps: {
+                          textContent: _vm._s(
+                            _vm.errors.get("address.apartment")
+                          )
+                        }
+                      })
                     : _vm._e()
                 ])
               ])
@@ -64296,7 +64099,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                class: { "is-invalid": _vm.errors.state },
+                class: { "is-invalid": _vm.errors.get("address.state") },
                 attrs: { type: "text" },
                 domProps: { value: _vm.address.state },
                 on: {
@@ -64309,10 +64112,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm.errors.state
-                ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.state[0]))
-                  ])
+              _vm.errors.get("address.state")
+                ? _c("span", {
+                    staticClass: "invalid-feedback",
+                    domProps: {
+                      textContent: _vm._s(_vm.errors.get("address.state"))
+                    }
+                  })
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -64331,7 +64137,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.errors.city },
+                    class: { "is-invalid": _vm.errors.get("address.city") },
                     attrs: { type: "text" },
                     domProps: { value: _vm.address.city },
                     on: {
@@ -64344,10 +64150,13 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.errors.city
-                    ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.city[0]))
-                      ])
+                  _vm.errors.get("address.city")
+                    ? _c("span", {
+                        staticClass: "invalid-feedback",
+                        domProps: {
+                          textContent: _vm._s(_vm.errors.get("address.city"))
+                        }
+                      })
                     : _vm._e()
                 ]),
                 _vm._v(" "),
@@ -64364,7 +64173,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.errors.zip },
+                    class: { "is-invalid": _vm.errors.get("address.zip") },
                     attrs: { type: "text" },
                     domProps: { value: _vm.address.zip },
                     on: {
@@ -64377,10 +64186,13 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.errors.zip
-                    ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.zip[0]))
-                      ])
+                  _vm.errors.get("address.zip")
+                    ? _c("span", {
+                        staticClass: "invalid-feedback",
+                        domProps: {
+                          textContent: _vm._s(_vm.errors.get("address.zip"))
+                        }
+                      })
                     : _vm._e()
                 ])
               ])
@@ -64407,7 +64219,9 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.errors.first_name },
+                    class: {
+                      "is-invalid": _vm.errors.get("contact.first_name")
+                    },
                     attrs: { type: "text" },
                     domProps: { value: _vm.contact.first_name },
                     on: {
@@ -64420,10 +64234,15 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.errors.first_name
-                    ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.first_name[0]))
-                      ])
+                  _vm.errors.get("contact.first_name")
+                    ? _c("span", {
+                        staticClass: "invalid-feedback",
+                        domProps: {
+                          textContent: _vm._s(
+                            _vm.errors.get("contact.first_name")
+                          )
+                        }
+                      })
                     : _vm._e()
                 ]),
                 _vm._v(" "),
@@ -64440,7 +64259,9 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.errors.middle_name },
+                    class: {
+                      "is-invalid": _vm.errors.get("contact.middle_name")
+                    },
                     attrs: { type: "text" },
                     domProps: { value: _vm.contact.middle_name },
                     on: {
@@ -64457,10 +64278,15 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.errors.middle_name
-                    ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.middle_name[0]))
-                      ])
+                  _vm.errors.get("contact.middle_name")
+                    ? _c("span", {
+                        staticClass: "invalid-feedback",
+                        domProps: {
+                          textContent: _vm._s(
+                            _vm.errors.get("contact.middle_name")
+                          )
+                        }
+                      })
                     : _vm._e()
                 ])
               ])
@@ -64479,7 +64305,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                class: { "is-invalid": _vm.errors.last_name },
+                class: { "is-invalid": _vm.errors.get("contact.last_name") },
                 attrs: { type: "text" },
                 domProps: { value: _vm.contact.last_name },
                 on: {
@@ -64492,10 +64318,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm.errors.last_name
-                ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.last_name[0]))
-                  ])
+              _vm.errors.get("contact.last_name")
+                ? _c("span", {
+                    staticClass: "invalid-feedback",
+                    domProps: {
+                      textContent: _vm._s(_vm.errors.get("contact.last_name"))
+                    }
+                  })
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -64512,7 +64341,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                class: { "is-invalid": _vm.errors.phone },
+                class: { "is-invalid": _vm.errors.get("contact.phone") },
                 attrs: { type: "text" },
                 domProps: { value: _vm.contact.phone },
                 on: {
@@ -64525,10 +64354,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm.errors.phone
-                ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.phone[0]))
-                  ])
+              _vm.errors.get("contact.phone")
+                ? _c("span", {
+                    staticClass: "invalid-feedback",
+                    domProps: {
+                      textContent: _vm._s(_vm.errors.get("contact.phone"))
+                    }
+                  })
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -64545,7 +64377,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                class: { "is-invalid": _vm.errors.mobile },
+                class: { "is-invalid": _vm.errors.get("contact.mobile") },
                 attrs: { type: "text" },
                 domProps: { value: _vm.contact.mobile },
                 on: {
@@ -64558,10 +64390,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm.errors.mobile
-                ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.mobile[0]))
-                  ])
+              _vm.errors.get("contact.mobile")
+                ? _c("span", {
+                    staticClass: "invalid-feedback",
+                    domProps: {
+                      textContent: _vm._s(_vm.errors.get("contact.mobile"))
+                    }
+                  })
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -64578,7 +64413,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                class: { "is-invalid": _vm.errors.fax },
+                class: { "is-invalid": _vm.errors.get("contact.fax") },
                 attrs: { type: "text" },
                 domProps: { value: _vm.contact.fax },
                 on: {
@@ -64591,10 +64426,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm.errors.fax
-                ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.fax[0]))
-                  ])
+              _vm.errors.get("contact.fax")
+                ? _c("span", {
+                    staticClass: "invalid-feedback",
+                    domProps: {
+                      textContent: _vm._s(_vm.errors.get("contact.fax"))
+                    }
+                  })
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -64611,7 +64449,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                class: { "is-invalid": _vm.errors.email },
+                class: { "is-invalid": _vm.errors.get("contact.email") },
                 attrs: { type: "text" },
                 domProps: { value: _vm.contact.email },
                 on: {
@@ -64624,10 +64462,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm.errors.email
-                ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.email[0]))
-                  ])
+              _vm.errors.get("contact.email")
+                ? _c("span", {
+                    staticClass: "invalid-feedback",
+                    domProps: {
+                      textContent: _vm._s(_vm.errors.get("contact.email"))
+                    }
+                  })
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -64644,7 +64485,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                class: { "is-invalid": _vm.errors.website },
+                class: { "is-invalid": _vm.errors.get("contact.website") },
                 attrs: { type: "text" },
                 domProps: { value: _vm.contact.website },
                 on: {
@@ -64657,10 +64498,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm.errors.website
-                ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.website[0]))
-                  ])
+              _vm.errors.get("contact.website")
+                ? _c("span", {
+                    staticClass: "invalid-feedback",
+                    domProps: {
+                      textContent: _vm._s(_vm.errors.get("contact.website"))
+                    }
+                  })
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -64677,7 +64521,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                class: { "is-invalid": _vm.errors.notes },
+                class: { "is-invalid": _vm.errors.get("contact.notes") },
                 attrs: { type: "textarea" },
                 domProps: { value: _vm.contact.notes },
                 on: {
@@ -64690,10 +64534,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm.errors.notes
-                ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.notes[0]))
-                  ])
+              _vm.errors.get("contact.notes")
+                ? _c("span", {
+                    staticClass: "invalid-feedback",
+                    domProps: {
+                      textContent: _vm._s(_vm.errors.get("contact.notes"))
+                    }
+                  })
                 : _vm._e()
             ])
           ])

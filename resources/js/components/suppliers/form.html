@@ -1,0 +1,337 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-10">
+            <div class="card-header px-0 mt-2 bg-transparent clearfix">
+                <h4 class="float-left pt-2">Nuevo Proveedor</h4>
+                <div class="card-header-actions mr-1">
+                    <a
+                        class="btn btn-primary"
+                        href="#"
+                        :disabled="submiting"
+                        @click.prevent="create"
+                    >
+                        <i class="fas fa-spinner fa-spin" v-if="submiting"></i>
+                        <i class="fas fa-check" v-else></i>
+                        <span class="ml-1">Grabar</span>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body px-0">
+                <div class="form-group">
+                    <label>Razon Social</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        :class="{'is-invalid': errors.get('supplier.bussinesName')}"
+                        v-model="supplier.bussinesName"
+                        name="supplier.bussinesName"
+                    />
+                    <span
+                        class="invalid-feedback"
+                        v-text="errors.get('supplier.bussinesName')"
+                        v-if="errors.get('supplier.bussinesName')"
+                    ></span>
+                </div>
+
+                <div class="form-group">
+                    <label>CUIT</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        :class="{'is-invalid': errors.get('supplier.taxNumber')}"
+                        v-model="supplier.taxNumber"
+                    />
+                    <span
+                        class="invalid-feedback"
+                        v-text="errors.get('supplier.taxNumber')"
+                        v-if="errors.get('supplier.taxNumber')"
+                    ></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre Comercial</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        :class="{'is-invalid': errors.get('supplier.name')}"
+                        v-model="supplier.name"
+                    />
+                    <span
+                        class="invalid-feedback"
+                        v-text="errors.get('supplier.name')"
+                        v-if="errors.get('supplier.name')"
+                    ></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Abreviatura</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        :class="{'is-invalid': errors.get('supplier.abbreviation')}"
+                        v-model="supplier.abbreviation"
+                    />
+                    <span
+                        class="invalid-feedback"
+                        v-text="errors.get('supplier.abbreviation')"
+                        v-if="errors.get('supplier.abbreviation')"
+                    ></span>
+                </div>
+
+                <fieldset class="form-group fieldset1">
+                    <legend class="legend1">Dirección</legend>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-8">
+                                <label>Calle</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    :class="{'is-invalid': errors.get('address.street')}"
+                                    v-model="address.street"
+                                />
+                                <span
+                                    class="invalid-feedback"
+                                    v-text="errors.get('address.street')"
+                                    v-if="errors.get('address.street')"
+                                ></span>
+                            </div>
+
+                            <div class="col-2">
+                                <label>Número</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    :class="{'is-invalid': errors.get('address.number')}"
+                                    v-model="address.number"
+                                />
+                                <span
+                                    class="invalid-feedback"
+                                    v-text="errors.get('address.nomber')"
+                                    v-if="errors.get('address.nomber')"
+                                ></span>
+                            </div>
+                            <div class="col-2">
+                                <label>Depto</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    :class="{'is-invalid': errors.get('address.apartment')}"
+                                    v-model="address.department"
+                                />
+                                <span
+                                    class="invalid-feedback"
+                                    v-text="errors.get('address.apartment')"
+                                    v-if="errors.get('address.apartment')"
+                                ></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Provincia</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :class="{'is-invalid': errors.get('address.state')}"
+                            v-model="address.state"
+                        />
+                        <span
+                            class="invalid-feedback"
+                            v-text="errors.get('address.state')"
+                            v-if="errors.get('address.state')"
+                        ></span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-9">
+                                <label>Ciudad</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    :class="{'is-invalid': errors.get('address.city')}"
+                                    v-model="address.city"
+                                />
+                                <span
+                                    class="invalid-feedback"
+                                    v-text="errors.get('address.city')"
+                                    v-if="errors.get('address.city')"
+                                ></span>
+                            </div>
+                            <div class="col-3">
+                                <label>Código Postal</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    :class="{'is-invalid': errors.get('address.zip')}"
+                                    v-model="address.zip"
+                                />
+                                <span
+                                    class="invalid-feedback"
+                                    v-text="errors.get('address.zip')"
+                                    v-if="errors.get('address.zip')"
+                                ></span>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <br />
+
+                <fieldset class="form-group fieldset1">
+                    <legend class="legend1">Contacto</legend>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label>Primer Nombre</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    :class="{'is-invalid': errors.get('contact.first_name')}"
+                                    v-model="contact.first_name"
+                                />
+                                <span
+                                    class="invalid-feedback"
+                                    v-text="errors.get('contact.first_name')"
+                                    v-if="errors.get('contact.first_name')"
+                                ></span>
+                            </div>
+                            <div class="col-6">
+                                <label>Segundo Nombre</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    :class="{'is-invalid': errors.get('contact.middle_name')}"
+                                    v-model="contact.middle_name"
+                                />
+                                <span
+                                    class="invalid-feedback"
+                                    v-text="errors.get('contact.middle_name')"
+                                    v-if="errors.get('contact.middle_name')"
+                                ></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Apellido</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :class="{'is-invalid': errors.get('contact.last_name')}"
+                            v-model="contact.last_name"
+                        />
+                        <span
+                            class="invalid-feedback"
+                            v-text="errors.get('contact.last_name')"
+                            v-if="errors.get('contact.last_name')"
+                        ></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefono</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :class="{'is-invalid': errors.get('contact.phone')}"
+                            v-model="contact.phone"
+                        />
+                        <span
+                            class="invalid-feedback"
+                            v-text="errors.get('contact.phone')"
+                            v-if="errors.get('contact.phone')"
+                        ></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Celular</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :class="{'is-invalid': errors.get('contact.mobile')}"
+                            v-model="contact.mobile"
+                        />
+                        <span
+                            class="invalid-feedback"
+                            v-text="errors.get('contact.mobile')"
+                            v-if="errors.get('contact.mobile')"
+                        ></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fax</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :class="{'is-invalid': errors.get('contact.fax')}"
+                            v-model="contact.fax"
+                        />
+                        <span
+                            class="invalid-feedback"
+                            v-text="errors.get('contact.fax')"
+                            v-if="errors.get('contact.fax')"
+                        ></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-Mail</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :class="{'is-invalid': errors.get('contact.email')}"
+                            v-model="contact.email"
+                        />
+                        <span
+                            class="invalid-feedback"
+                            v-text="errors.get('contact.email')"
+                            v-if="errors.get('contact.email')"
+                        ></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Website</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :class="{'is-invalid': errors.get('contact.website')}"
+                            v-model="contact.website"
+                        />
+                        <span
+                            class="invalid-feedback"
+                            v-text="errors.get('contact.website')"
+                            v-if="errors.get('contact.website')"
+                        ></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notas</label>
+                        <input
+                            type="textarea"
+                            class="form-control"
+                            :class="{'is-invalid': errors.get('contact.notes')}"
+                            v-model="contact.notes"
+                        />
+                        <span
+                            class="invalid-feedback"
+                            v-text="errors.get('contact.notes')"
+                            v-if="errors.get('contact.notes')"
+                        ></span>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="card-footer px-0 mt-2 bg-transparent clearfix">
+                <a
+                    class="btn btn-primary float-right"
+                    href="#"
+                    :disabled="submiting"
+                    @click.prevent="create"
+                >
+                    <i class="fas fa-spinner fa-spin" v-if="submiting"></i>
+                    <i class="fas fa-check" v-else></i>
+                    <span class="ml-1">Grabar</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

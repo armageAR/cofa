@@ -41,15 +41,22 @@ class SupplierController extends Controller
      */
     public function store(SupplierRequest $request)
     {
-
-        DB::transaction(function () use ($request) {
-            $supplier = Supplier::create($request->all());
+        DB::beginTransaction();
+        try {
+            $supplier = Supplier::create((array)$request->supplier);
             $supplier->contacts()->create((array)$request->contact);
             $supplier->addresses()->create((array)$request->address);
-        });
+
+            DB::commit();
+
+            return $supplier;
+        } catch (\Exception $e) {
+            DB::rollback();
+            return false;
+        }
 
 
-        return $supplier;
+
     }
 
     /**

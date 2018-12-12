@@ -24,17 +24,17 @@ class SupplierRequest extends FormRequest
     public function rules()
     {
         return [
-            'taxNumber' => 'required|numeric|digits:11|unique:suppliers,taxNumber,' . $this->id,
-            'bussinesName' => 'required|string|min:3|max:100',
-            'name' => 'required|string|max:50',
-            'abbreviation' => 'string|max:10',
-            //Contact
+            'supplier.taxNumber' => 'required|numeric|digits:11|unique:suppliers,taxNumber,' . $this->taxNumber,
+            'supplier.bussinesName' => 'required|string|min:3|max:100',
+            'supplier.name' => 'required|string|max:50',
+            'supplier.abbreviation' => 'string|max:10',
+        //Contact
             'contact.first_name' => 'required|string|max:20',
             'contact.middle_name' => 'string|max:20',
             'contact.last_name' => 'required|string|max:20',
             'contact.email' => 'required|email|max:60',
             'contact.website' => 'string|max:100',
-            //address
+         //address
             'address.street' => 'required|string|max:60',
             'address.number' => 'required|string|max:20',
             'address.city' => 'required|string|max:60',
@@ -67,13 +67,17 @@ class SupplierRequest extends FormRequest
     public function attributes()
     {
         return [
-            'taxNumber' => 'CUIT',
-            'bussinesName' => 'razon social',
-            'name' => 'nombre',
-            'abbreviation' => 'abreviatura',
-            'first_name' => 'primer nombre',
-            'middle_name' => 'segundo nombre',
-            'last_name' => 'apellido'
+            'supplier.taxNumber' => 'CUIT',
+            'supplier.bussinesName' => 'razon social',
+            'supplier.name' => 'nombre comercial',
+            'supplier.abbreviation' => 'abreviatura',
+            'contact.first_name' => 'primer nombre',
+            'contact.middle_name' => 'segundo nombre',
+            'contact.last_name' => 'apellido',
+            'address.street' => 'calle',
+            'address.number' => 'numero',
+            'address.city' => 'ciudad',
+            'address.state' => 'provincia',
         ];
     }
 }
