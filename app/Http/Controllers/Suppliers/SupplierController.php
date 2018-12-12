@@ -93,24 +93,25 @@ class SupplierController extends Controller
      */
     public function update(SupplierRequest $request)
     {
+        DB::beginTransaction();
+        try {
 
+            $supplier = Supplier::find($request->supplier['id']);
+            $supplier->update((array)$request->supplier);
 
-        // $this->validate($request, [
-        //     'taxNumber' => 'required|integer', //|unique:suppliers
-        //     'bussinesName' => 'required|string',
-        //     'name' => 'required|string'
-        // ]);
+            $contact = Contact::find($supplier->contacts->first()->id);
+            $contact->update((array)$request->contact);
 
-        $supplier = Supplier::find($request->supplier['id']);
-        $supplier->update((array)$request->supplier);
+            $address = Address::find($supplier->addresses->first()->id);
+            $address->update((array)$request->address);
 
-        $contact = Contact::find($supplier->contacts->first()->id);
-        $contact->update((array)$request->contact);
+            DB::commit();
 
-        $address = Address::find($supplier->addresses->first()->id);
-        $address->update((array)$request->address);
-
-        return $supplier;
+            return $supplier;
+        } catch (\Exception $e) {
+            DB::rollback();
+            return false;
+        }
     }
 
     /**
@@ -129,7 +130,6 @@ class SupplierController extends Controller
     {
         $query = Supplier::query()->withCount('contacts', 'addresses');
 
-
         if ($request->search) {
             $query->where('name', 'LIKE', '%' . $request->search . '%');
         }
@@ -137,27 +137,12 @@ class SupplierController extends Controller
         $suppliers = $query->orderBy($request->input('orderBy.column'), $request->input('orderBy.direction'))
             ->paginate($request->input('pagination.per_page'));
 
-
-        //$suppliers = Supplier::orderBy($request->input('orderBy.column'), $request->input('orderBy.direction'));
-
-
-
         return json_encode($suppliers);
     }
 
     public function count()
     {
         return Supplier::count();
-    }
-
-    public function getSupplier($supplier)
-    {
-        $supplier = Supplier::findOrFail($supplier)->with('addresses')->first();
-            //->with('contacts')->first()
-
-
-
-        return $supplier;
     }
 
 
