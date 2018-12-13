@@ -23,8 +23,13 @@ class SupplierRequest extends FormRequest
      */
     public function rules()
     {
+        if (isset($this->supplier['id'])) {
+            $id = $this->supplier['id'];
+        } else {
+            $id = 0;
+        }
         return [
-            'supplier.taxNumber' => 'required|numeric|digits:11|unique:suppliers,taxNumber,' . $this->supplier['id'],
+            'supplier.taxNumber' => 'required|numeric|digits:11|unique:suppliers,taxNumber,' . $id,
             'supplier.bussinesName' => 'required|string|min:3|max:100',
             'supplier.name' => 'required|string|max:50',
             'supplier.abbreviation' => 'max:10',

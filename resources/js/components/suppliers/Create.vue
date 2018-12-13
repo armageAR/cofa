@@ -1,52 +1,31 @@
 <template src="./form.html"></template>
 
 <script>
-class Errors {
-  constructor() {
-    this.errors = {};
-  }
+import { Form } from "../Form.vue";
 
-  get(field) {
-    if (this.errors[field]) {
-      return this.errors[field][0];
-    }
-  }
-
-  record(errors) {
-    this.errors = errors;
-  }
-}
 export default {
   data() {
     return {
-      supplier: {},
-      address: {},
-      contact: {},
-      errors: new Errors(),
-      submiting: false,
-      createForm: true
+      form: new Form({
+        supplier: {},
+        address: {},
+        contact: {}
+      }),
+      creating: true,
+      loading: true,
+      submiting: false
     };
   },
   mounted() {},
   methods: {
-    create() {
+    onSubmit() {
       if (!this.submiting) {
         this.submiting = true;
-        axios
-          .post(`/api/suppliers/store`, {
-            supplier: this.supplier,
-            address: this.address,
-            contact: this.contact
-          })
-          .then(response => {
-            this.$toasted.global.error("Proveedor creado!");
-            location.href = "/suppliers";
-          })
-          .catch(error => {
-            //console.log(error.response.data.errors);
-            this.errors.record(error.response.data.errors);
-            this.submiting = false;
-          });
+        this.form.create(`/api/suppliers/store`).then(response => {
+          this.$toasted.global.error("Proveedor creado!");
+          location.href = "/suppliers";
+        });
+        this.submiting = false;
       }
     }
   }
