@@ -60,12 +60,14 @@ export default {
     onDestroy() {
       if (!this.destroing) {
         this.destroing = true;
+
         this.form
           .destroy(`/api/suppliers/${this.form.supplier.id}`)
           .then(response => {
             this.$toasted.global.error("Proveedor eliminado!");
             location.href = "/suppliers";
           });
+
         this.destroing = false;
       }
     }

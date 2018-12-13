@@ -64840,10 +64840,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (!this.destroing) {
         this.destroing = true;
+
         this.form.destroy("/api/suppliers/" + this.form.supplier.id).then(function (response) {
           _this3.$toasted.global.error("Proveedor eliminado!");
           location.href = "/suppliers";
         });
+
         this.destroing = false;
       }
     }
@@ -67964,20 +67966,22 @@ var Form = function () {
     value: function destroy(url) {
       var _this3 = this;
 
-      swal({
-        title: "¿Esta usted seguro?",
-        text: "Usted esta por borrar este proveedor!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true
-      }).then(function (willDelete) {
-        if (willDelete) {
-          axios.delete(url).then(function (response) {
-            location.href = "/suppliers";
-          }).catch(function (error) {
-            _this3.errors.record(error.response.data.errors);
-          });
-        }
+      return new Promise(function (resolve, reject) {
+        swal({
+          title: "¿Esta usted seguro?",
+          text: "Usted esta por borrar este proveedor!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true
+        }).then(function (willDelete) {
+          if (willDelete) {
+            axios.delete(url).then(function (response) {
+              resolve(response.data);
+            }).catch(function (error) {
+              _this3.errors.record(error.response.data.errors);
+            });
+          }
+        });
       });
     }
   }]);

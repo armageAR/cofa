@@ -76,23 +76,25 @@ export class Form {
     });
   }
   destroy(url) {
-    swal({
-      title: "¿Esta usted seguro?",
-      text: "Usted esta por borrar este proveedor!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true
-    }).then(willDelete => {
-      if (willDelete) {
-        axios
-          .delete(url)
-          .then(response => {
-            location.href = "/suppliers";
-          })
-          .catch(error => {
-            this.errors.record(error.response.data.errors);
-          });
-      }
+    return new Promise((resolve, reject) => {
+      swal({
+        title: "¿Esta usted seguro?",
+        text: "Usted esta por borrar este proveedor!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          axios
+            .delete(url)
+            .then(response => {
+              resolve(response.data);
+            })
+            .catch(error => {
+              this.errors.record(error.response.data.errors);
+            });
+        }
+      });
     });
   }
 }
