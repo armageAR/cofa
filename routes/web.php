@@ -11,9 +11,8 @@
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
+
 
 Auth::routes();
 
@@ -25,6 +24,7 @@ Route::get('/dashboard', 'DashboardController@index')->name('home');
 
 require __DIR__ . '/profile/profile.php';
 require __DIR__ . '/users/users.php';
+require __DIR__ . '/suppliers/suppliers.php';
 require __DIR__ . '/roles/roles.php';
 require __DIR__ . '/roles/permissions.php';
 require __DIR__ . '/modules/modules.php';

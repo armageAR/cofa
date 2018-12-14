@@ -79,7 +79,8 @@ return [
     |
      */
 
-    'locale' => 'en',
+    'locale' => 'es',
+    //'locale' => substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2),
 
     /*
     |--------------------------------------------------------------------------

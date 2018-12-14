@@ -20,15 +20,15 @@
                     <small class="text-muted">{{ Auth::user()->email }}</small>
                 </a>
                 <a class="dropdown-item" href="/profile">
-                    <i class="fas fa-user"></i> Profile
+                    <i class="fas fa-user"></i> Perfil
                 </a>
                 <div class="divider"></div>
                 <a class="dropdown-item" href="/password">
-                    <i class="fas fa-key"></i> Password
+                    <i class="fas fa-key"></i> Clave
                 </a>
                 <div class="divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
+                    <i class="fas fa-sign-out-alt"></i> Salir
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf

@@ -11360,3 +11360,25 @@ a.text-dark:focus {
   bottom: 3% !important;
 }
 
+.fieldset1 {
+  border: 1px solid #ddd !important;
+  margin: 0;
+  padding: 10px;
+  position: relative;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  padding-left: 10px;
+  margin-top: 0.5em;
+  width: 100%;
+}
+
+.legend1 {
+  font-weight: bold;
+  margin-bottom: 0px;
+  width: 35%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 5px 5px 10px;
+  background-color: #ffffff;
+}
+
