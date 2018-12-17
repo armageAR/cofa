@@ -20,7 +20,6 @@ class DataFileController extends Controller
      */
     public function index()
     {
-        header('Content-Type:text/html; charset=UTF-8');
         $files = Storage::disk('movistar')->listContents('/', false);
         foreach ($files as $file) {
             //Register each file
@@ -107,29 +106,8 @@ class DataFileController extends Controller
             } else {
                 echo ' No esta Pendiente <br>';
             }
-
-        //     array:14 [▼
-        //     0 => "NRO CPTE  "
-        //     1 => "TIPO DE CPTE   "
-        //     2 => "FEC.CPTE"
-        //     3 => "NRO CTA.  "
-        //     4 => "NRO MOVIL "
-        //     5 => "Min.Plan"
-        //     6 => "DESCRIPCION                   "
-        //     7 => "     PERIODO        "
-        //     8 => "UNIDADES"
-        //     9 => "PRECIO "
-        //     10 => "IMPORTE S/IVA"
-        //     11 => " IMPORTE IVA "
-        //     12 => "IVA % "
-        //     13 => "   IMP.TOTAL"
-        //   ]
-
-
             echo '---------< fin archivo>--------------<br>';
         }
-
-        //return ($files);
     }
 
     /**
