@@ -43,11 +43,11 @@ class SupplierController extends Controller
     {
         DB::beginTransaction();
         try {
+            DB::commit();
+
             $supplier = Supplier::create((array)$request->supplier);
             $supplier->contacts()->create((array)$request->contact);
             $supplier->addresses()->create((array)$request->address);
-
-            DB::commit();
 
             return $supplier;
         } catch (\Exception $e) {
