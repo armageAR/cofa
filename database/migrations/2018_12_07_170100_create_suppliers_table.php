@@ -19,6 +19,7 @@ class CreateSuppliersTable extends Migration
             $table->string('bussinesName', 100);
             $table->string('name', 50);
             $table->string('abbreviation', 10)->nullable();
+            $table->string('directory', 10);
 
 
             $table->timestamps();

@@ -10,7 +10,7 @@ class Supplier extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = ['taxNumber', 'bussinesName', 'name', 'abbreviation'];
+    protected $fillable = ['taxNumber', 'bussinesName', 'name', 'abbreviation', 'directory'];
 
 
 
