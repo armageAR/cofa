@@ -13,6 +13,10 @@
 
 Route::view('/', 'welcome');
 
+// Route::get('/pp', function () {
+//     $supplier = App\Supplier::find(1);
+//     return $supplier;
+// });
 
 Auth::routes();
 
@@ -29,4 +33,5 @@ require __DIR__ . '/roles/roles.php';
 require __DIR__ . '/roles/permissions.php';
 require __DIR__ . '/modules/modules.php';
 
-Route::resource('api/data', 'DataFileController');
+//Route::resource('api/data', 'DataFileController');
+Route::get('api/data/{id}', 'DataFileController@index');
