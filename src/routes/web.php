@@ -12,6 +12,7 @@
  */
 
 Route::view('/', 'welcome');
+Route::view('/info', 'info');
 
 // Route::get('/pp', function () {
 //     $supplier = App\Supplier::find(1);

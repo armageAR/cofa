@@ -1,0 +1,1 @@
+docker-compose exec -T php_fpm php artisan migrate:fresh --seed --force
