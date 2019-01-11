@@ -24,8 +24,8 @@ class DataFileController extends Controller
     {
         // try {
         $supplier = Supplier::findorfail($id);
-        $this->register($supplier);
 
+        $this->register($supplier);
         $this->import($supplier);
 
         $response = Response::make($supplier, '200');
