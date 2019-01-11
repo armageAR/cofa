@@ -1,0 +1,35 @@
+version: "3.5"
+services:
+  php_fpm:
+    build: .
+    container_name: cofa_php_fpm
+    working_dir: /usr/share/nginx/cofa
+    networks:
+      - cofa
+    volumes:
+      - ./src:/usr/share/nginx/cofa
+  nginx:
+    image: nginx:1.15
+    container_name: cofa_nginx
+    working_dir: /usr/share/nginx/cofa
+    networks:
+      - cofa
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/usr/share/nginx/cofa
+      - ./src/storage/app/public:/usr/share/nginx/cofa/public/storage
+      - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
+  mysql:
+    image: mysql:5.7
+    container_name: cofa_mysql
+    networks:
+      - cofa
+    environment:
+      - MYSQL_DATABASE=cofa
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=cofauser
+      - MYSQL_PASSWORD=cofapassword
+networks:
+  cofa:
+    driver: bridge

@@ -1,9 +1,18 @@
 # CoFa
 
-Control de Facturacion
+##Control de Facturacion
 
-### The base for developing awesome projects
+### Install Details
+
+Clone the repo
+Run "docker-compose up"
+
+###PhpMyAdmin
+
+```
+docker run --name myadmin -d -e PMA_HOST=cofa_mysql -p 8081:80 --network cofa_cofa phpmyadmin/phpmyadmin
+```
 
 ---
 
-> Developed with :bulb: :headphones: :beer: by [@armage](https://gitlab.com/armage)
+> Developed with :bulb: :headphones: :coffee: by [@armage](https://gitlab.com/armage)
