@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class importBody extends Model
 {
+    protected $table = "files_bodies";
     //
 }
