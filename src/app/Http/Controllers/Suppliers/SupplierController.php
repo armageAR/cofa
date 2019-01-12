@@ -46,8 +46,8 @@ class SupplierController extends Controller
             DB::commit();
 
             $supplier = Supplier::create((array)$request->supplier);
-            $supplier->contacts()->create((array)$request->contact);
-            $supplier->addresses()->create((array)$request->address);
+            //$supplier->contacts()->create((array)$request->contact);
+            //$supplier->addresses()->create((array)$request->address);
 
             return $supplier;
         } catch (\Exception $e) {

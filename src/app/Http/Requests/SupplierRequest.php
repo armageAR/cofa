@@ -35,16 +35,16 @@ class SupplierRequest extends FormRequest
             'supplier.abbreviation' => 'max:10',
             'supplier.directory' => 'required|max:10',
         //Contact
-            'contact.first_name' => 'required|string|max:20',
-            'contact.middle_name' => 'string|max:20',
-            'contact.last_name' => 'required|string|max:20',
-            'contact.email' => 'required|email|max:60',
-            'contact.website' => 'string|max:100',
+            // 'contact.first_name' => 'required|string|max:20',
+            // 'contact.middle_name' => 'string|max:20',
+            // 'contact.last_name' => 'required|string|max:20',
+            // 'contact.email' => 'required|email|max:60',
+            // 'contact.website' => 'string|max:100',
          //address
-            'address.street' => 'required|string|max:60',
-            'address.number' => 'required|string|max:20',
-            'address.city' => 'required|string|max:60',
-            'address.state' => 'required|string|max:60',
+            // 'address.street' => 'required|string|max:60',
+            // 'address.number' => 'required|string|max:20',
+            // 'address.city' => 'required|string|max:60',
+            // 'address.state' => 'required|string|max:60',
         ];
     }
 
