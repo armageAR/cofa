@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImportBodiesTable extends Migration
+class CreateFilesBodiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateImportBodiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('import_bodies', function (Blueprint $table) {
+        Schema::create('files_bodies', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('filesHeader_id');
             $table->string('invoiceNumber', 20);
             $table->string('invoiceType', 20);
             $table->date('invoiceDate');
@@ -28,10 +29,9 @@ class CreateImportBodiesTable extends Migration
             $table->float('vatAmount', 8, 2);
             $table->decimal('vatPercent', 8, 2);
             $table->float('totalAmount', 10, 2);
-            $table->unsignedInteger('importHeader_id');
             $table->timestamps();
 
-            $table->foreign('importHeader_id')->references('id')->on('import_headers');
+            $table->foreign('filesHeader_id')->references('id')->on('files_headers');
         });
     }
 
@@ -42,6 +42,6 @@ class CreateImportBodiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('import_bodies');
+        Schema::dropIfExists('files_bodies');
     }
 }
