@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImportFilesTable extends Migration
+class CreateFilesHeadersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreateImportFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('import_files', function (Blueprint $table) {
+        Schema::create('files_headers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fileName', 200)->unique();
             $table->unsignedInteger('supplier_id');
+            $table->string('custNumber', 201);
+            $table->string('custName', 201);
+            $table->date('invoiceDate');
+            $table->string('fileName', 200)->unique();
             $table->string('status', 10);
 
             $table->timestamps();
 
             $table->foreign('supplier_id')->references('id')->on('suppliers');
-
         });
     }
 
@@ -33,6 +35,6 @@ class CreateImportFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('import_files');
+        Schema::dropIfExists('files_headers');
     }
 }
