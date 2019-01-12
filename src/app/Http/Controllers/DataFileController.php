@@ -7,9 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
-use App\import_file;
-use App\importHeader;
-use App\importBody;
+use App\fileHeader;
+use App\fileBody;
 use App\Supplier;
 use Illuminate\Support\Facades\Response;
 
@@ -44,7 +43,7 @@ class DataFileController extends Controller
     public function register(Supplier $supplier)
     {
         //Check that the pending files in the table are in the directory
-        $filesTable = import_file::where('status', 'Pending')->get();
+        $filesTable = fileHeader::where('status', 'Pending')->get();
         foreach ($filesTable as $file) {
             $exist = Storage::disk($supplier->directory)->exists($file["fileName"]);
             if (!$exist) {
@@ -59,7 +58,7 @@ class DataFileController extends Controller
             $regFile["fileName"] = $file["basename"];
             $regFile["supplier_id"] = $supplier->id;
             $regFile["status"] = 'Pending';
-            $importFile = import_file::firstorcreate(['fileName' => $regFile["fileName"]], $regFile);
+            $importFile = fileHeader::firstorcreate(['fileName' => $regFile["fileName"]], $regFile);
         }
 
 
@@ -74,14 +73,11 @@ class DataFileController extends Controller
      */
     public function import(Supplier $supplier)
     {
-        $files = import_file::where('status', 'Pending')->get();
+        $files = fileHeader::where('status', 'Pending')->get();
         foreach ($files as $file) {
 
             $isHeader = true;
-            $header = [];
             $discard = config('cofa.importMovistar.discard');
-            $header["file_id"] = $file->id;
-            $header['fileStatus'] = "Pending";
             $stream = Storage::disk($supplier->directory)->readStream($file->fileName);
             while (!feof($stream)) {
                 $row = utf8_encode(trim(fgets($stream)));
@@ -90,22 +86,23 @@ class DataFileController extends Controller
                 }
                 if ($row == config('cofa.importMovistar.headerLimit')) {
                     $isHeader = false;
-                    $header['invoiceDate'] = Carbon::createFromFormat('d/m/Y', $header['invoiceDate'])->format('Y-m-d');
-                    $importHeader = importHeader::firstorcreate($header);
+                    $file->invoiceDate = Carbon::createFromFormat('d/m/Y', $file->invoiceDate)->format('Y-m-d');
+                    $file->save();
                     continue;
                 }
                 $cols = explode("\t", $row);
                 if ($isHeader) {
                     //encabezado
                     $index = preg_replace("/[^a-zA-Z ]+/", "", trim($cols[0]));
-                    $header[config('cofa.importMovistar.' . $index)] = trim($cols[1]);
+                    $bla = (config('cofa.importMovistar.' . $index));
+                    $file->$bla = trim($cols[1]);
                 } else {
                     //cuerpo
                     if (sizeof($cols) != 15) {
                         continue;
                     }
 
-                    $importBody = new importBody;
+                    $importBody = new fileBody;
                     $importBody->invoiceNumber = trim($cols[0]);
                     $importBody->invoiceType = trim($cols[1]);
 
@@ -126,7 +123,7 @@ class DataFileController extends Controller
                     $importBody->vatAmount = (float)trim($cols[11]);
                     $importBody->vatPercent = (float)trim($cols[12]);
                     $importBody->totalAmount = (float)trim($cols[13]);
-                    $importBody->importHeader_id = $importHeader->id;
+                    $importBody->filesHeader_id = $file->id;
 
                     $importBody->save();
                     unset($importBody);

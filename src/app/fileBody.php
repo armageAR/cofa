@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class importBody extends Model
+class fileBody extends Model
 {
     protected $table = "files_bodies";
     //
