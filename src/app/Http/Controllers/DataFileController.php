@@ -42,7 +42,7 @@ class DataFileController extends Controller
     public function register(Supplier $supplier)
     {
         //Check that the pending files in the table are in the directory
-        $filesTable = fileHeader::where('status', 'Pending')->where('supplier_id', $supplier->id)->get();
+        $filesTable = fileHeader::status('Pending')->supplier($supplier->id)->get();
         foreach ($filesTable as $file) {
             $exist = Storage::disk(strtolower($supplier->directory))->exists($file["fileName"]);
             if (!$exist) {
@@ -75,7 +75,7 @@ class DataFileController extends Controller
     {
         $supplierImportClass = 'App\Library\Suppliers\Import' . $supplier->directory;
         $import = new $supplierImportClass();
-        $files = fileHeader::where('status', 'Pending')->where('supplier_id', $supplier->id)->get();
+        $files = fileHeader::status('Pending')->supplier($supplier->id)->get();
         foreach ($files as $file) {
             $import->import($supplier, $file);
 

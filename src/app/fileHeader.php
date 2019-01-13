@@ -13,4 +13,17 @@ class fileHeader extends Model
      * @var array
      */
     protected $fillable = ['supplier_id', 'custNumber', 'custName', 'invoiceDate', 'fileName', 'status'];
+
+    /**
+     * Local Scopes
+     */
+    public function scopeStatus($query, string $status)
+    {
+        return $query->where('status', $status);
+    }
+    public function scopeSupplier($query, $supplier_id)
+    {
+        return $query->where('supplier_id', $supplier_id);
+    }
+
 }
