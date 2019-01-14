@@ -30,6 +30,14 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_USER=cofauser
       - MYSQL_PASSWORD=cofapassword
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    networks:
+      - cofa
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=cofa_mysql
 networks:
   cofa:
     driver: bridge
