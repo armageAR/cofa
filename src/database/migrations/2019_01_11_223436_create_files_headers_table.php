@@ -16,9 +16,9 @@ class CreateFilesHeadersTable extends Migration
         Schema::create('files_headers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('supplier_id');
-            $table->string('custNumber', 201);
-            $table->string('custName', 201);
-            $table->date('invoiceDate');
+            $table->string('custNumber', 201)->nullable();
+            $table->string('custName', 201)->nullable();
+            $table->date('invoiceDate')->nullable();
             $table->string('fileName', 200)->unique();
             $table->string('status', 10);
 
