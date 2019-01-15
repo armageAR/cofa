@@ -30,6 +30,13 @@
                 </a>
             </li>
             @endcan
+            @can('read-files')
+            <li class="nav-item">
+                <a class="nav-link" href="/files">
+                    <i class="nav-icon icon-cloud-upload"></i> Archivos
+                </a>
+            </li>
+            @endcan
         </ul>
     </nav>
     <sidebar></sidebar>

@@ -26,4 +26,18 @@ class fileHeader extends Model
         return $query->where('supplier_id', $supplier_id);
     }
 
+    public function test()
+    {
+        return "test";
+    }
+
+    public function bodies()
+    {
+        return $this->hasMany('App\fileBody', 'filesHeader_id');
+    }
+    public function supplier()
+    {
+        return $this->belongsTo('App\Supplier');
+    }
+
 }

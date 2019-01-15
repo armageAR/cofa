@@ -53,6 +53,9 @@ Vue.component("suppliers-index", require("./components/suppliers/Index.vue"));
 Vue.component("suppliers-create", require("./components/suppliers/Create.vue"));
 Vue.component("suppliers-edit", require("./components/suppliers/Edit.vue"));
 
+// Files
+Vue.component("files-index", require("./components/files/Index.vue"));
+
 // Roles
 Vue.component("roles-index", require("./components/roles/Index.vue"));
 Vue.component("roles-create", require("./components/roles/Create.vue"));
