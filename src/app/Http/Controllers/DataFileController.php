@@ -44,7 +44,8 @@ class DataFileController extends Controller
         //Check that the pending files in the table are in the directory
         $filesTable = fileHeader::status('Pending')->supplier($supplier->id)->get();
         foreach ($filesTable as $file) {
-            $exist = Storage::disk(strtolower($supplier->directory))->exists($file["fileName"]);
+            $readFile = strtolower($supplier->directory) . "/" . $file["fileName"];
+            $exist = Storage::disk('source')->exists($readFile);
             if (!$exist) {
                 $file->delete();
             }
@@ -53,7 +54,7 @@ class DataFileController extends Controller
         //Verify that all the files are in the table
         $regfiles = array();
         $dir = strtolower($supplier->directory);
-        $files = Storage::disk($dir)->listContents('/', false);
+        $files = Storage::disk('source')->listContents('/' . $dir, false);
         foreach ($files as $file) {
             $regFile["fileName"] = $file["basename"];
             $regFile["supplier_id"] = $supplier->id;

@@ -47,9 +47,9 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-        'movistar' => [
+        'source' => [
             'driver' => 'local',
-            'root' => storage_path('app/movistar'),
+            'root' => storage_path('app/source'),
         ],
         'public' => [
             'driver' => 'local',
