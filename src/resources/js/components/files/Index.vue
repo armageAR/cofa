@@ -3,7 +3,7 @@
     <div class="card-header px-0 mt-2 bg-transparent clearfix">
       <h4 class="float-left pt-2">Archivos de Datos</h4>
       <div class="card-header-actions mr-1">
-        <a class="btn btn-success" href="/files/create">Nuevo Archivo</a>
+        <!-- <a class="btn btn-success" href="/files/create">Nuevo Archivo</a> -->
       </div>
     </div>
     <div class="card-body px-0">
@@ -26,13 +26,22 @@
         </div>
         <div class="col-auto">
           <multiselect
+            v-model="filters.supplier_id"
+            :options="suppliers"
+            @select="changeSupplier"
+            placeholder="Todos"
+            label="name"
+            track-by="id"
+          ></multiselect>
+        </div>
+        <div class="col-auto">
+          <multiselect
             v-model="filters.pagination.per_page"
             :options="[25,50,100,200]"
             :searchable="false"
             :show-labels="false"
             :allow-empty="false"
             @select="changeSize"
-            placeholder="Search"
           ></multiselect>
         </div>
       </div>
@@ -70,7 +79,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="file in files" @click="editFile(file.id)" :key="file.id">
+          <tr v-for="file in files" :key="file.id">
             <td class="d-none d-sm-table-cell">{{file.id}}</td>
             <td>{{file.fileName}}</td>
             <td>{{file.supplier.name}}</td>
@@ -84,9 +93,9 @@
               <small class="text-muted">{{file.created_at | moment("LT")}}</small>
             </td>
             <td class="d-none d-sm-table-cell">
-              <a href="#" class="text-muted">
+              <!-- <a href="#" class="text-muted" @click="editFile(file.id)">
                 <i class="fas fa-pencil-alt"></i>
-              </a>
+              </a>-->
             </td>
           </tr>
         </tbody>
@@ -138,9 +147,9 @@
           <strong>No hay archivos registrados</strong>
         </p>
         <p class="text-muted">Intente cambiar los criterios de filtrado</p>
-        <a class="btn btn-success" href="/files/create" role="button">
+        <!-- <a class="btn btn-success" href="/files/create" role="button">
           <i class="fa fa-plus"></i>&nbsp; Nuevo Archivo
-        </a>
+        </a>-->
       </div>
       <content-placeholders v-if="loading">
         <content-placeholders-text/>
@@ -149,11 +158,14 @@
   </div>
 </template>
 
+
 <script>
 export default {
   data() {
     return {
       files: [],
+      suppliers: [],
+      loading: true,
       filters: {
         pagination: {
           from: 0,
@@ -167,9 +179,9 @@ export default {
           column: "id",
           direction: "asc"
         },
-        search: ""
-      },
-      loading: true
+        search: "",
+        supplier_id: []
+      }
     };
   },
   mounted() {
@@ -178,10 +190,18 @@ export default {
     } else {
       localStorage.setItem("filtersTableSuppliers", this.filters);
     }
+    this.getSuppliers();
     this.getFiles();
-    console.log(this.files);
   },
   methods: {
+    getSuppliers() {
+      this.loading = true;
+      this.suppliers = [];
+
+      axios.get("/api/suppliers").then(response => {
+        this.suppliers = response.data;
+      });
+    },
     getFiles() {
       this.loading = true;
       this.files = [];
@@ -198,13 +218,12 @@ export default {
         )
         .then(response => {
           this.files = response.data.data;
-          console.log(this.files);
           delete response.data.data;
           this.filters.pagination = response.data;
           this.loading = false;
         });
     },
-    editfile(fileId) {
+    editFile(fileId) {
       location.href = `/files/${fileId}/edit`;
     },
     // filters
@@ -215,6 +234,10 @@ export default {
     changeSize(perPage) {
       this.filters.pagination.current_page = 1;
       this.filters.pagination.per_page = perPage;
+      this.getFiles();
+    },
+    changeSupplier(supplier) {
+      this.filters.supplier_id = supplier;
       this.getFiles();
     },
     sort(column) {

@@ -20,7 +20,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $sup = Supplier::all();
+        return response()->json($sup);
     }
 
     /**

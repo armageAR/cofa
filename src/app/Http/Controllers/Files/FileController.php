@@ -95,7 +95,9 @@ class FileController extends Controller
         if ($request->search) {
             $query->where('fileName', 'LIKE', '%' . $request->search . '%');
         }
-
+        if ($request->supplier_id) {
+            $query->where('supplier_id', '=', $request->supplier_id);
+        }
         $files = $query->orderBy($request->input('orderBy.column'), $request->input('orderBy.direction'))
             ->paginate($request->input('pagination.per_page'));
 

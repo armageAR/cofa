@@ -10,6 +10,7 @@ Route::middleware('auth')->group(function () {
 
         // api
         Route::group(['prefix' => 'api/suppliers'], function () {
+            Route::get('/', 'SupplierController@index');
             Route::get('/getSupplier/{supplier}', 'SupplierController@getSupplier');
             Route::get('/count', 'SupplierController@count');
             Route::post('/filter', 'SupplierController@filter')->middleware('permission:read-suppliers');
